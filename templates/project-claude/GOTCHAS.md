@@ -1,64 +1,62 @@
-# Known Issues & Gotchas
+# Gotchas
 
-*Last updated: YYYY-MM-DD HH:MM*
+> Known issues, workarounds, quirks. Error → Fix format.
 
-This file documents quirks, known issues, and workarounds specific to THIS project.
+## Strapi
 
-## Format
+| Issue | Fix |
+|-------|-----|
+| Relations return `null` | Add `?populate=*` or `?populate=relation_name` |
+| Media URLs are relative | Prepend `STRAPI_URL` to media paths |
+| Draft content not showing | Use `?publicationState=preview` (requires auth) |
+| Filters not working | Check syntax: `?filters[field][$eq]=value` |
 
-Each entry should include:
-- **Issue:** What's the problem?
-- **When it happens:** Conditions that trigger it
-- **Workaround:** How to fix/avoid it
-- **Root cause:** Why it happens (if known)
+## Medusa
 
----
+| Issue | Fix |
+|-------|-----|
+| Cart empty after refresh | Cart ID must be in cookies, not localStorage |
+| Prices showing $0 | Cart needs region: `createCart({ region_id })` |
+| Relations not included | Add `?expand=items,items.variant` |
+| Webhook not firing | Check Medusa admin → Settings → Webhooks |
 
-## Example: Strapi Relations Not Populating
+## Next.js 15
 
-**Issue:** Fetching products from Strapi returns null for `category` field
+| Issue | Fix |
+|-------|-----|
+| `params` is undefined | Must `await params` in page components |
+| `cookies()` error | Must `await cookies()` (async in Next 15) |
+| Caching unexpected | Default is NO cache. Add `revalidate` explicitly |
+| Hydration mismatch | Check date/time rendering, use `suppressHydrationWarning` |
 
-**When it happens:** When using default API call without populate parameter
+## Tailwind v4
 
-**Workaround:**
-```tsx
-// ❌ Wrong - relations not populated
-const res = await fetch(`${STRAPI_URL}/api/products`)
+| Issue | Fix |
+|-------|-----|
+| Classes not applying | Check `@import "tailwindcss"` in CSS |
+| `@apply` not working | v4 uses CSS-native, check migration guide |
+| Colors look wrong | v4 uses OKLCH, not hex |
 
-// ✅ Correct - populate all relations
-const res = await fetch(`${STRAPI_URL}/api/products?populate=*`)
+## shadcn/ui
 
-// ✅ Or populate specific fields
-const res = await fetch(`${STRAPI_URL}/api/products?populate=category,images`)
-```
+| Issue | Fix |
+|-------|-----|
+| Component not found | Run `npx shadcn@latest add [component]` |
+| Styles not applying | Check `components.json` paths |
+| Theme not working | Verify CSS variables in `globals.css` |
 
-**Root cause:** Strapi doesn't populate relations by default for performance
+## TypeScript
 
----
+| Issue | Fix |
+|-------|-----|
+| Type not exported | Check `types/index.ts` exports |
+| Generic errors | Restart TS server: Cmd+Shift+P → Restart TS |
 
-## Example: Hydration Mismatch in Development
+## Add New Gotchas
 
-**Issue:** "Hydration failed" error in development mode only
+When you discover a gotcha:
+1. Add to appropriate section above
+2. Use `Issue | Fix` table format
+3. Keep fixes actionable (what to do, not why)
 
-**When it happens:** Using date/time or random values in Server Components
-
-**Workaround:**
-```tsx
-// ❌ Wrong - causes hydration mismatch
-<time>{new Date().toLocaleString()}</time>
-
-// ✅ Correct - suppress hydration warning for date/time
-<time suppressHydrationWarning>{new Date().toLocaleString()}</time>
-
-// Or make it a Client Component
-'use client'
-function CurrentTime() {
-  return <time>{new Date().toLocaleString()}</time>
-}
-```
-
-**Root cause:** Server and client render at different times, producing different output
-
----
-
-*Add new gotchas as they're discovered*
+*Updated: YYYY-MM-DD*

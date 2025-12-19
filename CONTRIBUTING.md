@@ -1,401 +1,337 @@
-# Contributing to Thoughtful Dev
+# Contributing to SolsDev
 
-Thank you for considering contributing to the Thoughtful Dev plugin! We welcome contributions from the community.
+Thank you for considering contributing to the SolsDev plugin!
 
 ---
 
-## 🎯 Ways to Contribute
+## Ways to Contribute
 
-### 1. Report Bugs 🐛
-Found a bug? [Open an issue](https://github.com/Neno73/thoughtful-dev/issues) with:
+### 1. Report Bugs
+
+[Open an issue](https://github.com/Neno73/solsdev/issues) with:
 - Clear description of the problem
 - Steps to reproduce
 - Expected vs. actual behavior
 - Claude Code version
-- Screenshots (if applicable)
 
-### 2. Suggest Features 💡
-Have an idea? [Create a feature request](https://github.com/Neno73/thoughtful-dev/issues) with:
+### 2. Suggest Features
+
+[Create a feature request](https://github.com/Neno73/solsdev/issues) with:
 - Use case explanation
 - Why it would be valuable
-- Proposed implementation (if you have ideas)
+- Proposed implementation
 
-### 3. Submit Pull Requests 🔧
+### 3. Add Stack Rules
+
+The most valuable contributions! See [Rules Contributing Guide](./.claude/rules/CONTRIBUTING.md) for:
+- Rule file structure
+- Research requirements
+- Quality checklist
+
+### 4. Submit Pull Requests
+
 Fix bugs or add features by:
 - Following the development setup below
 - Writing clear commit messages
 - Testing your changes thoroughly
-- Documenting new features
-
-### 4. Share Feedback 💬
-[Start a discussion](https://github.com/Neno73/thoughtful-dev/discussions) to:
-- Share how you're using the plugin
-- Discuss best practices
-- Help other users
-- Suggest improvements
-
-### 5. Improve Documentation 📚
-Help others by:
-- Fixing typos or unclear instructions
-- Adding examples
-- Writing guides
-- Translating documentation
 
 ---
 
-## 🛠️ Development Setup
+## Development Setup
 
 ### Prerequisites
+
 - Claude Code installed
 - Git installed
-- Text editor (VS Code, Vim, etc.)
 - Basic understanding of Markdown
 
 ### Clone and Install
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR-USERNAME/thoughtful-dev.git
-cd thoughtful-dev
+git clone https://github.com/YOUR-USERNAME/solsdev.git
+cd solsdev
 
-# Add as local marketplace in Claude Code
-/plugin marketplace add ./thoughtful-dev
+# Add as local marketplace
+/plugin marketplace add ./solsdev
 
 # Install for testing
-/plugin install thoughtful-dev@thoughtful-dev
+/plugin install solsdev@solsdev
 ```
 
 ### Test Your Changes
 
 ```bash
-# After making changes, reload the plugin
-/plugin reload thoughtful-dev
+# After changes, reload the plugin
+/plugin reload solsdev
 
 # Or reinstall
-/plugin uninstall thoughtful-dev
-/plugin install thoughtful-dev@thoughtful-dev
+/plugin uninstall solsdev
+/plugin install solsdev@solsdev
 ```
 
 ---
 
-## 🔀 Pull Request Process
+## Pull Request Process
 
-### 1. Create a Feature Branch
+### 1. Create Feature Branch
 
 ```bash
-git checkout -b feature/my-awesome-feature
+git checkout -b feature/my-feature
 ```
 
-Branch naming conventions:
+Branch naming:
 - `feature/` - New features
 - `fix/` - Bug fixes
-- `docs/` - Documentation updates
-- `refactor/` - Code improvements
+- `docs/` - Documentation
+- `rules/` - Stack rules
 
-### 2. Make Your Changes
+### 2. Make Changes
+
+**For Stack Rules:**
+- Edit files in `.claude/rules/stacks/`
+- Follow structure in [Rules CONTRIBUTING](./.claude/rules/CONTRIBUTING.md)
+- Research latest versions before writing
+- Include BAD/GOOD code examples
 
 **For Skills:**
-- Edit SKILL.md files in `skills/` directory
-- Use clear markdown formatting
+- Edit SKILL.md files in `skills/`
 - Include practical examples
 - Test with real scenarios
 
-**For Templates:**
-- Edit files in `templates/` directory
-- Keep templates concise and scannable
-- Add timestamps for updates
-- Include inline examples
-
-**For Documentation:**
-- Update README.md, INSTALL.md, or create new guides
-- Use clear headings and examples
-- Keep language practical and approachable
+**For Patterns:**
+- Edit files in `.claude/rules/patterns/`
+- Focus on cross-stack integration
+- Document common gotchas
 
 ### 3. Test Thoroughly
 
-Test scenarios:
-- ✅ Skill activation triggers correctly
-- ✅ Questions/analysis are relevant
-- ✅ Safety features work as expected
-- ✅ Templates load properly
-- ✅ No syntax errors in markdown
-- ✅ Links are not broken
+- [ ] Rules activate for matching paths
+- [ ] Code examples are syntactically correct
+- [ ] Documentation links work
+- [ ] No markdown syntax errors
 
-### 4. Commit Your Changes
-
-Write clear commit messages:
+### 4. Commit
 
 ```bash
 # Good examples
-git commit -m "feat: Add TypeScript-specific questions to requirements-clarifier"
-git commit -m "fix: Correct git branch protection logic in safety rules"
-git commit -m "docs: Add troubleshooting section for plugin installation"
+git commit -m "feat(rules): add meilisearch stack rule"
+git commit -m "fix(rules): correct strapi populate syntax"
+git commit -m "docs: update installation instructions"
 
-# Use conventional commits
+# Conventional commits
 # feat: New feature
 # fix: Bug fix
 # docs: Documentation
+# rules: Stack rules
 # refactor: Code improvement
-# test: Testing updates
-# chore: Maintenance
 ```
 
 ### 5. Push and Create PR
 
 ```bash
-# Push your branch
-git push origin feature/my-awesome-feature
+git push origin feature/my-feature
 ```
 
 Then:
-1. Go to https://github.com/Neno73/thoughtful-dev
+1. Go to https://github.com/Neno73/solsdev
 2. Click "Compare & pull request"
-3. Fill in the PR template (see below)
-4. Submit for review
+3. Fill in the template
 
 ---
 
-## 📝 Pull Request Template
-
-When creating a PR, please include:
+## Pull Request Template
 
 ```markdown
 ## Description
-[Brief description of what this PR does]
+[Brief description]
 
 ## Type of Change
 - [ ] Bug fix
-- [ ] New feature
+- [ ] New stack rule
+- [ ] New pattern
 - [ ] Documentation update
-- [ ] Refactoring
-- [ ] Other (please describe)
+- [ ] Skill improvement
 
 ## Changes Made
 - [List key changes]
-- [One bullet per significant change]
 
 ## Testing Done
 - [ ] Tested locally with Claude Code
-- [ ] Verified skill activation
+- [ ] Verified rule activation
 - [ ] Checked documentation links
-- [ ] Tested with demo scenarios
-
-## Screenshots (if applicable)
-[Add screenshots showing the change in action]
 
 ## Related Issues
 Fixes #[issue number]
-Related to #[issue number]
-
-## Checklist
-- [ ] Code follows project style guidelines
-- [ ] Documentation updated (if needed)
-- [ ] Changelog updated (if significant change)
-- [ ] All tests passing
-- [ ] No breaking changes (or clearly documented)
 ```
 
 ---
 
-## 📋 Code Style Guidelines
+## Code Style Guidelines
 
-### Markdown (Skills & Templates)
+### Stack Rules
 
-**Skills (SKILL.md files):**
 ```markdown
-# Skill Name
+---
+paths: "**/pattern/**/*"
+---
 
-## Purpose
-[Clear one-line purpose]
+# Technology Rules
 
-## When to Activate
-[Specific triggers]
+*One-line description*
 
-## Process
-[Step-by-step approach]
+## Documentation & Resources
 
-## Example
-[Practical example with user input and Claude response]
+| Resource | URL |
+|----------|-----|
+| **Official Docs** | https://... |
+
+**Current Version**: vX.Y.Z
+
+## Core Concept
+
+```typescript
+// GOOD - Explanation
+const right = doThing()
 ```
 
-**Templates:**
-- Use `##` for main sections
-- Keep lines under 100 characters
-- Use bullet points for lists
-- Include timestamps: `[Updated: 2024-10-26]`
-- Add inline examples
+## Critical Gotchas
 
-### Documentation
-- Use clear, practical language
-- Include code examples with syntax highlighting
-- Add emoji sparingly for visual breaks (✅ ❌ 💡 🎯)
-- Test all command examples
-- Keep sentences short and scannable
+### 1. Gotcha Title
+
+```typescript
+// BAD
+const wrong = ...
+
+// GOOD
+const right = ...
+```
+
+## Common Error → Fix
+
+| Error | Fix |
+|-------|-----|
+| `error message` | Solution |
+```
+
+### Pattern Files
+
+- Focus on cross-stack integration
+- Document data ownership
+- Include common error scenarios
+- Show complete code examples
 
 ---
 
-## 🧪 Testing Guidelines
-
-### Manual Testing Checklist
-
-**Requirements Clarifier:**
-- [ ] Activates on ambiguous request
-- [ ] Asks relevant clarifying questions
-- [ ] Stack-specific questions appear
-- [ ] Gets explicit agreement before coding
-
-**Implementation Planner:**
-- [ ] Analyzes current state correctly
-- [ ] Proposes multiple options
-- [ ] Identifies risks accurately
-- [ ] Creates actionable step-by-step plan
-
-**Breakthrough Generator:**
-- [ ] Activates on "stuck" indicators
-- [ ] Applies appropriate techniques
-- [ ] Challenges assumptions systematically
-- [ ] Provides actionable insights
-
-**Safety Features:**
-- [ ] Git main protection triggers
-- [ ] Database operation confirmation works
-- [ ] Secrets detection functions
-- [ ] No false positives
-
-### Edge Cases to Test
-- Very long user inputs
-- Ambiguous tech stack mentions
-- Conflicting requirements
-- Invalid commands
-- Missing dependencies
-
----
-
-## 🏗️ Project Structure
-
-Understanding the structure helps you contribute effectively:
+## Project Structure
 
 ```
-thoughtful-dev/
+solsdev/
 ├── .claude-plugin/
-│   └── marketplace.json        # ⚠️ Core marketplace config
-│
-├── skills/                     # Plugin skills
+│   ├── marketplace.json
+│   └── plugin.json
+├── .claude/
+│   └── rules/
+│       ├── INDEX.md              # Quick reference
+│       ├── CONTRIBUTING.md       # How to add rules
+│       ├── stacks/               # Stack-specific rules
+│       │   ├── medusa-v2.md
+│       │   ├── strapi-5.md
+│       │   ├── nextjs-15.md
+│       │   ├── shadcn-ui.md
+│       │   ├── heroui.md
+│       │   ├── tailwind-v4.md
+│       │   ├── meilisearch.md
+│       │   ├── coolify.md
+│       │   └── docker.md
+│       └── patterns/             # Cross-stack patterns
+│           ├── cart-checkout.md
+│           ├── cms-integration.md
+│           └── gotchas.md
+├── skills/                       # Plugin skills
 │   ├── requirements-clarifier/
 │   ├── implementation-planner/
-│   └── breakthrough-generator/
-│
-├── templates/                  # User templates
+│   ├── breakthrough-generator/
+│   └── doc-maintenance/
+├── templates/                    # User templates
 │   ├── personal-CLAUDE.md
 │   └── project-claude/
-│
-└── docs/                       # Documentation
-    ├── README.md
-    ├── INSTALL.md
-    └── CONTRIBUTING.md (this file)
+├── commands/                     # Slash commands
+│   ├── init-project.md
+│   ├── init-personal.md
+│   └── audit-docs.md
+├── README.md
+├── INSTALL.md
+├── CONTRIBUTING.md (this file)
+└── CHANGELOG.md
 ```
 
 ---
 
-## 🎨 Design Principles
-
-When contributing, keep these principles in mind:
+## Design Principles
 
 ### 1. Safety First
-- Git workflow protection is non-negotiable
-- Database operations must require confirmation
-- Never commit secrets or sensitive data
+- Git workflow protection non-negotiable
+- Database operations require confirmation
+- Never commit secrets
 
-### 2. Thoughtful Over Fast
-- Clarify before coding
-- Plan before implementing
-- Think before answering
+### 2. Rules Over Prose
+- Tables beat paragraphs
+- Code examples beat descriptions
+- Decision trees beat explanations
 
-### 3. Black-Box Architecture
-- Constant velocity (write new, don't edit old)
-- Complete ownership (one module, one person)
-- Everything replaceable (rewrite > understand complex code)
-- Clean interfaces (hide implementation)
-- Single responsibility (one purpose per module)
+### 3. Research First
+- Web search for latest versions
+- Find official documentation
+- Identify breaking changes
 
-### 4. Progressive Documentation
-- Index-based discovery
-- Timestamp accountability
-- Examples over essays
-- Maintain, don't rewrite
+### 4. Stack Ownership
+- Medusa owns: products, pricing, inventory, orders
+- Strapi owns: marketing content, SEO, rich media
+- Next.js owns: rendering, routing, caching
 
 ---
 
-## 🤝 Community Guidelines
-
-### Be Respectful
-- Assume good intentions
-- Be patient with new contributors
-- Give constructive feedback
-- Celebrate contributions
-
-### Be Clear
-- Use clear language
-- Provide context
-- Link to relevant resources
-- Show examples
-
-### Be Helpful
-- Answer questions
-- Review PRs promptly
-- Share knowledge
-- Welcome newcomers
-
----
-
-## 🚀 Release Process
+## Release Process
 
 For maintainers:
 
 1. **Version Bump**
    ```bash
-   # Update version in:
-   # - marketplace.json
+   # Update in:
+   # - .claude-plugin/plugin.json
    # - CHANGELOG.md
    # - README.md badges
    ```
 
 2. **Update Changelog**
    ```markdown
-   ## [1.1.0] - 2024-XX-XX
+   ## [2.1.0] - 2025-XX-XX
    ### Added
-   - New feature
+   - New stack rule: technology-name.md
    ### Fixed
-   - Bug fix
+   - Bug fix description
    ```
 
 3. **Create Release**
    ```bash
-   git tag v1.1.0
-   git push origin v1.1.0
+   git tag v2.1.0
+   git push origin v2.1.0
    ```
 
-4. **Announce**
-   - Create GitHub release with notes
-   - Post in discussions
-   - Update documentation
+---
+
+## Questions?
+
+- **General:** [GitHub Discussions](https://github.com/Neno73/solsdev/discussions)
+- **Bugs:** [GitHub Issues](https://github.com/Neno73/solsdev/issues)
 
 ---
 
-## ❓ Questions?
-
-- **General Questions:** [GitHub Discussions](https://github.com/Neno73/thoughtful-dev/discussions)
-- **Bug Reports:** [GitHub Issues](https://github.com/Neno73/thoughtful-dev/issues)
-- **Private Concerns:** [[email protected]]
-
----
-
-## 📜 License
+## License
 
 By contributing, you agree that your contributions will be licensed under the MIT License.
 
 ---
 
-**Thank you for making Thoughtful Dev better!** 🙏
-
-Every contribution, no matter how small, helps developers write better code with Claude. We appreciate your effort! 🚀
+**Thank you for making SolsDev better!**

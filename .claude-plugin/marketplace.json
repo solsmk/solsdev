@@ -1,26 +1,26 @@
 {
-  "name": "thoughtful-dev-marketplace",
+  "name": "solsdev-marketplace",
   "owner": {
     "name": "Neno73",
     "email": "[email protected]"
   },
   "metadata": {
-    "description": "Transform Claude Code into a thoughtful development partner with requirements clarification, implementation planning, and breakthrough generation",
-    "version": "1.1.1",
+    "description": "Opinionated development workflow for Medusa v2 + Strapi 5 + Next.js 15/16 teams. Thoughtful development with path-scoped rules and async documentation maintenance.",
+    "version": "2.0.0",
     "pluginRoot": "./"
   },
   "plugins": [
     {
-      "name": "thoughtful-dev",
+      "name": "solsdev",
       "source": "./",
-      "description": "Complete thoughtful development workflow with 3 core skills: requirements-clarifier (prevents premature coding), implementation-planner (analyzes approaches and risks), and breakthrough-generator (systematic problem-solving when stuck). Includes safety-first git workflow, black-box architecture principles, and progressive documentation templates.",
-      "version": "1.0.5",
+      "description": "Complete stack-aware development workflow for e-commerce teams. Includes 4 core skills (requirements-clarifier, implementation-planner, breakthrough-generator, doc-maintenance), path-scoped rules for Medusa v2/Strapi 5/Next.js 15/16, cart/checkout patterns, CMS integration guides, and comprehensive gotchas documentation.",
+      "version": "2.0.0",
       "author": {
         "name": "Neno73",
         "email": "[email protected]"
       },
-      "homepage": "https://github.com/Neno73/thoughtful-dev",
-      "repository": "https://github.com/Neno73/thoughtful-dev",
+      "homepage": "https://github.com/Neno73/solsdev",
+      "repository": "https://github.com/Neno73/solsdev",
       "license": "MIT",
       "keywords": [
         "development",
@@ -32,11 +32,11 @@
         "strapi",
         "medusa",
         "typescript",
-        "tdd",
+        "e-commerce",
+        "headless-cms",
         "architecture",
-        "safety",
-        "git-workflow",
-        "documentation"
+        "documentation",
+        "path-scoped-rules"
       ],
       "category": "productivity",
       "strict": true

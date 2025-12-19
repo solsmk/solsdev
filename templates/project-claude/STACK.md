@@ -1,72 +1,68 @@
 # Tech Stack
 
-*Project: [PROJECT NAME]*
-*Last updated: YYYY-MM-DD HH:MM*
+> Package → Version → Purpose (one line each)
 
-## Frontend
+## Core
 
-- **Next.js 14+** (App Router) - React framework with SSR/SSG
-- **TypeScript** - Type safety and better DX
-- **Tailwind CSS** - Utility-first styling
-- **shadcn/ui** - Accessible component library
+| Package | Version | Purpose |
+|---------|---------|---------|
+| next | 15.x | React framework, App Router |
+| react | 19.x | UI library |
+| typescript | 5.x | Type safety |
 
-## Backend
+## Backend Integration
 
-- **Strapi** - Headless CMS for content management
-- **Medusa** - E-commerce engine for store functionality
+| Package | Version | Purpose |
+|---------|---------|---------|
+| @medusajs/js-sdk | 2.x | Medusa Store API client |
+| strapi | 5.x | Headless CMS |
 
-## Key Libraries
+## UI
 
-- **react-hook-form** - Form handling
-- **zod** - Schema validation
-- **@tanstack/react-query** - Data fetching (if using)
-- [Add other important dependencies]
+| Package | Version | Purpose |
+|---------|---------|---------|
+| tailwindcss | 4.x | Utility CSS |
+| @radix-ui/* | latest | Accessible primitives (via shadcn) |
+| lucide-react | latest | Icons |
 
-## Database
+## Forms & Validation
 
-- **PostgreSQL** (via Strapi/Medusa) - Primary database
+| Package | Version | Purpose |
+|---------|---------|---------|
+| react-hook-form | 7.x | Form state |
+| zod | 3.x | Schema validation |
+| @hookform/resolvers | latest | Zod integration |
 
-## Deployment
+## Data Fetching
 
-- **Vercel** - Frontend hosting
-- [Add backend hosting details]
+| Package | Version | Purpose |
+|---------|---------|---------|
+| @tanstack/react-query | 5.x | Server state, caching |
 
----
+## Dev Tools
 
-## Why This Stack
-
-### Next.js 14+
-- App Router for better performance and DX
-- Server Components reduce client bundle size
-- Built-in optimization (images, fonts, etc.)
-
-### Strapi
-- Flexible content modeling
-- REST + GraphQL APIs
-- Admin panel out of the box
-
-### Medusa
-- Modular e-commerce engine
-- Customizable without rebuilding from scratch
-- Good developer experience
-
-### shadcn/ui
-- Accessible by default
-- Tailwind-based (consistent with our styling)
-- Copy-paste components (no package dependency)
-
----
+| Package | Version | Purpose |
+|---------|---------|---------|
+| eslint | 9.x | Linting |
+| prettier | 3.x | Formatting |
+| biome | 1.x | Fast lint + format (alternative) |
 
 ## Version Requirements
 
-- **Node.js:** >= 18.x
-- **npm/pnpm:** >= 8.x
-- **Next.js:** >= 14.0.0
-- **Strapi:** [version]
-- **Medusa:** [version]
+| Tool | Min Version |
+|------|-------------|
+| Node.js | 20.x |
+| pnpm | 9.x |
 
-## Version Notes
+## Adding Dependencies
 
-- Next.js 14+ required for stable Server Actions
-- Strapi version [X] fixes [specific issue if relevant]
-- Medusa version [X] adds [specific feature if relevant]
+Before adding: Check if shadcn/ui has a component. Check if existing package solves it.
+
+```bash
+pnpm add [package]        # Production
+pnpm add -D [package]     # Dev only
+```
+
+After adding: Update this file.
+
+*Updated: YYYY-MM-DD*

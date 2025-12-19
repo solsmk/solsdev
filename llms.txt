@@ -1,0 +1,283 @@
+# SolsDev - Claude Code Plugin for Medusa v2 + Strapi 5 + Next.js 15/16
+
+> AI-optimized documentation for modern commerce stack development
+
+## Overview
+
+SolsDev transforms Claude Code into a thoughtful development partner for teams building with:
+- **Medusa v2** - Composable commerce engine
+- **Strapi 5** - Headless CMS
+- **Next.js 15/16** - React framework with App Router
+
+## Quick Start
+
+- Installation: [INSTALL.md](INSTALL.md)
+- Contributing: [CONTRIBUTING.md](CONTRIBUTING.md)
+- Changelog: [CHANGELOG.md](CHANGELOG.md)
+- Roadmap: [ROADMAP.md](ROADMAP.md)
+
+## Core Stack Rules
+
+Path-scoped rules that automatically load when working with matching files:
+
+### E-commerce Engine
+- [Medusa v2 Patterns](.claude/rules/stacks/medusa-v2.md): Modules, workflows, API routes, dependency injection, Query pattern
+  - Activates for: `**/medusa/**`, `**/modules/**/*.ts`, `**/workflows/**`
+  - Topics: 18 commerce modules, workflow compensation, container DI, event system
+
+### Headless CMS
+- [Strapi 5 Patterns](.claude/rules/stacks/strapi-5.md): Content types, controllers, services, Document Service API
+  - Activates for: `**/strapi/**`, `**/cms/**`, `**/content-types/**`
+  - Topics: documentId usage, population syntax, lifecycle hooks, media handling
+
+### React Framework
+- [Next.js 15 Patterns](.claude/rules/stacks/nextjs-15.md): App Router, Server Components, Server Actions, caching
+  - Activates for: `**/app/**`, `**/*.tsx`, `**/components/**`
+  - Topics: Async APIs (await params/cookies), caching strategies, RSC vs Client Components
+
+## UI & Styling Rules
+
+### Component Libraries
+- [shadcn/ui Patterns](.claude/rules/stacks/shadcn-ui.md): Copy-paste components, CLI usage, theming
+  - Activates for: `**/components/ui/**`, `components.json`
+  - Topics: Component installation, CSS variables, cn() utility, customization
+
+- [HeroUI Patterns](.claude/rules/stacks/heroui.md): Formerly NextUI, compound components, accessibility
+  - Activates for: `**/@heroui/**`, HeroUI components
+  - Topics: React Aria integration, Framer Motion, responsive patterns
+
+### Styling
+- [Tailwind CSS v4](.claude/rules/stacks/tailwind-v4.md): CSS-first config, v4 breaking changes
+  - Activates for: `**/*.css`, Tailwind usage
+  - Topics: @theme directive, container queries, 3D transforms, migration from v3
+
+## Infrastructure Rules
+
+- [Meilisearch](.claude/rules/stacks/meilisearch.md): Search engine integration
+  - Activates for: `**/search/**`
+  - Topics: JS SDK, index config, filter syntax, faceting, Medusa/Strapi integration
+
+- [Coolify](.claude/rules/stacks/coolify.md): Self-hosted PaaS deployment
+  - Activates for: `**/docker-compose*.yml`, deployments
+  - Topics: Build packs, env vars, database provisioning, service management
+
+- [Docker](.claude/rules/stacks/docker.md): Containerization patterns
+  - Activates for: `**/Dockerfile*`, `.dockerignore`
+  - Topics: Multi-stage builds, npm ci, health checks, non-root users, Next.js standalone
+
+## Cross-Stack Integration Patterns
+
+- [Cart & Checkout](.claude/rules/patterns/cart-checkout.md): E-commerce flows
+  - Activates for: `**/cart/**`, `**/checkout/**`
+  - Topics: Cart state management, SSR hydration, payment sessions, order completion
+
+- [CMS Integration](.claude/rules/patterns/cms-integration.md): Content patterns
+  - Activates for: `**/content/**`, `**/strapi/**`
+  - Topics: Strapi client setup, media URL handling, caching strategies, revalidation
+
+- [Integration Gotchas](.claude/rules/patterns/gotchas.md): Common issues and fixes
+  - Always available
+  - Topics: Data ownership, cart hydration, CORS, caching conflicts, auth flow, webhooks
+
+## Development Workflows
+
+Skills that guide development process:
+
+- [Requirements Clarifier](skills/requirements-clarifier/SKILL.md): Prevent premature implementation
+  - When: User requests features with ambiguous requirements
+  - Output: Clarifying questions, validated assumptions, explicit agreement
+
+- [Implementation Planner](skills/implementation-planner/SKILL.md): Plan before coding
+  - When: Non-trivial features or changes
+  - Output: Approach analysis, trade-offs, breakdown, risks, user agreement
+
+- [Breakthrough Generator](skills/breakthrough-generator/SKILL.md): Systematic problem-solving
+  - When: Stuck on difficult problems
+  - Output: Assumption excavation, lateral thinking, problem reframing
+
+- [Documentation Maintenance](skills/doc-maintenance/SKILL.md): Keep docs current
+  - When: After implementing features, refactoring, adding dependencies
+  - Output: Updated .claude/*.md files, drift detection
+
+## Project Documentation Templates
+
+SolsDev includes templates for project-specific documentation:
+
+- [STACK.md](templates/project-claude/STACK.md): Tech stack dependencies and versions
+- [ARCHITECTURE.md](templates/project-claude/ARCHITECTURE.md): System design and structure
+- [PATTERNS.md](templates/project-claude/PATTERNS.md): Code conventions and patterns
+- [DECISIONS.md](templates/project-claude/DECISIONS.md): Architectural Decision Records (ADRs)
+- [STARTUP.md](templates/project-claude/STARTUP.md): Build, run, test commands and troubleshooting
+- [GOTCHAS.md](templates/project-claude/GOTCHAS.md): Known issues and workarounds
+- [INDEX.md](templates/project-claude/INDEX.md): What to read when
+- [CLAUDE.md](templates/project-claude/CLAUDE.md): Project-specific Claude instructions
+
+Personal configuration:
+- [Personal CLAUDE.md](templates/personal-CLAUDE.md): User's global development methodology
+
+## Commands
+
+Slash commands for common tasks:
+
+- `/solsdev:init-project` - Analyze codebase and create documentation
+- `/solsdev:init-personal` - Setup personal `~/.claude/CLAUDE.md`
+- `/solsdev:audit-docs` - Check documentation drift
+
+## Rules System Documentation
+
+Meta-documentation about how rules work:
+
+- [Rules Index](.claude/rules/INDEX.md): Quick reference with decision trees and error mappings
+- [Rules README](.claude/rules/README.md): How the rules system works
+- [Contributing to Rules](.claude/rules/CONTRIBUTING.md): How to add/update rules
+
+## External Documentation References
+
+When SolsDev's curated patterns aren't enough, reference official documentation:
+
+### Medusa v2
+- Official Docs: https://docs.medusajs.com/v2
+- LLM-optimized: https://docs.medusajs.com/llms.txt
+- Admin API: https://docs.medusajs.com/api/admin
+- Store API: https://docs.medusajs.com/api/store
+- GitHub: https://github.com/medusajs/medusa
+
+### Strapi 5
+- Official Docs: https://docs.strapi.io/dev-docs
+- Document Service API: https://docs.strapi.io/dev-docs/api/document-service
+- GitHub: https://github.com/strapi/strapi
+
+### Next.js 15/16
+- Official Docs: https://nextjs.org/docs
+- App Router: https://nextjs.org/docs/app
+- Caching Guide: https://nextjs.org/docs/app/building-your-application/caching
+- GitHub: https://github.com/vercel/next.js
+
+### UI Libraries
+- shadcn/ui: https://ui.shadcn.com/docs
+- HeroUI: https://www.heroui.com/docs
+- Tailwind CSS v4: https://tailwindcss.com/docs
+
+### Infrastructure
+- Meilisearch: https://www.meilisearch.com/docs
+- Coolify: https://coolify.io/docs
+- Docker: https://docs.docker.com
+
+## MCP Servers
+
+Recommended Model Context Protocol servers for enhanced capabilities:
+
+### Stack-specific
+- **Medusa:** `SGFGOV/medusa-mcp` - Commerce operations via AI
+- **Strapi:** `misterboe/strapi-mcp-server` - Content management via AI
+- **Next.js:** Built-in DevTools MCP (v16) - AI-assisted debugging
+- **shadcn:** Built-in MCP server - Component registry search
+
+### General Development
+- **GitHub:** `mcp/github` - Repository management
+- **Filesystem:** `mcp/filesystem` - Safe file system access
+- **Web Fetch:** `mcp/fetch` - HTTP requests for external docs
+
+## Error → Rule Quick Reference
+
+Common errors and which rules to consult:
+
+| Error | Check This Rule |
+|-------|----------------|
+| `params.id undefined` | nextjs-15.md (async APIs) |
+| `cookies is not a function` | nextjs-15.md (async APIs) |
+| Relations not populated | strapi-5.md (population) or medusa-v2.md |
+| Cart empty after refresh | gotchas.md (cart hydration) |
+| Prices not updating | gotchas.md (caching) or nextjs-15.md |
+| CORS errors | gotchas.md (API URLs) |
+| Media URLs broken (404) | strapi-5.md (media handling) |
+| Workflow step failed | medusa-v2.md (workflows) |
+| Styles not applying | tailwind-v4.md (config) |
+| Component hydration mismatch | shadcn-ui.md or heroui.md |
+| Search filter returns empty | meilisearch.md (filter syntax) |
+| Docker build fails | docker.md (multi-stage builds) |
+| Deploy fails on Coolify | coolify.md (build packs) |
+
+## Stack Ownership Reference
+
+Quick decision tree for data ownership:
+
+| Data Type | Owner | Why |
+|-----------|-------|-----|
+| Products, variants, SKUs, pricing, inventory | Medusa | Commerce operations, cart calculations |
+| Orders, payments, customers | Medusa | Transaction management |
+| Marketing content, blog, SEO | Strapi | Editorial workflow, rich text |
+| Product images (marketing) | Strapi | Media library, transformations |
+| Pages, routes, rendering | Next.js | SSR/SSG, client interactions |
+| Search indexes | Meilisearch | Fast search, faceting |
+
+## Architecture Principles
+
+SolsDev follows Eskil Steenberg's Black-Box Architecture:
+
+1. **Constant Velocity** - Write 5 new lines vs. edit 1 line later
+2. **Complete Ownership** - One module, one person (complete understanding)
+3. **Everything Replaceable** - Can't understand it? Rewrite it
+4. **Black Box Interfaces** - Clean APIs hide implementation details
+5. **Single Responsibility** - One module, one purpose
+
+## Safety Features
+
+Built-in protections:
+
+- **Git Workflow:** NEVER work directly on main/master - always feature branches
+- **Database Operations:** Ask before destructive operations (DROP, DELETE, TRUNCATE)
+- **Secrets Protection:** Never commit .env files or hardcoded secrets
+
+## Installation
+
+```bash
+# Add marketplace
+/plugin marketplace add Neno73/solsdev
+
+# Install plugin
+/plugin install solsdev
+```
+
+### Team Auto-Install
+
+Add to `.claude/settings.json`:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "solsdev-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "Neno73/solsdev"
+      }
+    }
+  },
+  "enabledPlugins": ["solsdev"]
+}
+```
+
+## Version
+
+Current version: **2.0.0** (December 2025)
+
+- Major rewrite with path-scoped rules
+- Renamed from Thoughtful Dev to SolsDev
+- Focus on Medusa v2 + Strapi 5 + Next.js 15/16 stack
+
+## Support
+
+- GitHub: https://github.com/Neno73/solsdev
+- Issues: https://github.com/Neno73/solsdev/issues
+- Discussions: https://github.com/Neno73/solsdev/discussions
+
+## License
+
+MIT License - see [LICENSE](LICENSE)
+
+---
+
+*This llms.txt file provides AI-optimized navigation of SolsDev documentation.*
+*For human-readable documentation, start with [README.md](README.md).*
+
+*Generated: 2025-12-19*

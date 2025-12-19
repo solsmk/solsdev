@@ -1,45 +1,29 @@
-# Project Documentation Index
+# .claude/ Documentation Index
 
-*Last updated: YYYY-MM-DD HH:MM*
+> Project documentation for AI agents. Read on-demand, not upfront.
 
-## Quick Start
-- See **STARTUP.md** for build/run/test commands and troubleshooting
+## Core Docs
 
-## Architecture & Design
-- **STACK.md** - Tech stack with versions and rationale
-- **ARCHITECTURE.md** - System design, data flow, component structure  
-- **PATTERNS.md** - Code patterns and conventions used in THIS project
+| File | Read When | Contents |
+|------|-----------|----------|
+| [STACK.md](STACK.md) | Adding deps, version questions | Package versions, why chosen |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | Adding features, refactoring | Directory map, data flow, boundaries |
+| [PATTERNS.md](PATTERNS.md) | Writing code, PR review | File refs to patterns in codebase |
+| [STARTUP.md](STARTUP.md) | Setup, commands, errors | Commands, env vars, troubleshooting |
+| [GOTCHAS.md](GOTCHAS.md) | Debugging, weird behavior | Known issues with workarounds |
+| [DECISIONS.md](DECISIONS.md) | Understanding "why" | Architectural decision log |
 
-## Decisions & History
-- **DECISIONS.md** - Architectural decisions with rationale (append-only log)
+## Optional Docs
 
-## Known Issues
-- **GOTCHAS.md** - Known issues, quirks, and workarounds
+| File | Read When | Contents |
+|------|-----------|----------|
+| api/strapi.md | Strapi integration | Endpoints, population, types |
+| api/medusa.md | Medusa integration | Store API, cart flow, webhooks |
 
-## APIs & Integration
-- **api/** - API documentation directory (if needed)
-  - strapi-endpoints.md
-  - medusa-integration.md
-  - external-apis.md
+## Reading Strategy
 
-## Session Logs (optional)
-- **sessions/** - Development session logs for complex work
+1. Start with root `CLAUDE.md` (auto-loaded)
+2. Read specific doc when task requires it
+3. Don't read everything upfront
 
----
-
-## How to Use This Documentation
-
-**When starting work:**
-1. Read INDEX.md (this file) first
-2. Identify docs relevant to your current task
-3. Read only what you need (progressive discovery)
-
-**When adding new docs:**
-1. Create the document
-2. Add entry here with 1-line description
-3. Explain when this doc should be read
-
-**When updating docs:**
-1. Maintain existing docs, don't rewrite
-2. Add timestamp to updated sections
-3. Keep entries concise and scannable
+*Updated: YYYY-MM-DD*

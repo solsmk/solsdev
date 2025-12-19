@@ -1,13 +1,13 @@
-# Installation Guide - Thoughtful Dev
+# Installation Guide - SolsDev
 
-Complete guide to installing and configuring the Thoughtful Dev plugin for Claude Code.
+Complete guide to installing the SolsDev plugin for Claude Code.
 
 ---
 
 ## Prerequisites
 
 - **Claude Code** installed and running
-- **Git** installed (for cloning/updating)
+- **Git** installed
 - Basic familiarity with command line
 
 ---
@@ -16,74 +16,57 @@ Complete guide to installing and configuring the Thoughtful Dev plugin for Claud
 
 ### Method 1: Quick Install (Recommended)
 
-The fastest way to get started:
-
 ```bash
-# Add marketplace and install plugin in one step
-/plugin marketplace add Neno73/thoughtful-dev
-/plugin install thoughtful-dev
+# Add marketplace and install
+/plugin marketplace add Neno73/solsdev
+/plugin install solsdev
 ```
 
 Done! The plugin is now active.
 
 ---
 
-### Method 2: Manual Marketplace Setup
-
-For more control over the installation process:
+### Method 2: Manual Setup
 
 #### Step 1: Add the Marketplace
 
 ```bash
-# Add the Thoughtful Dev marketplace
-/plugin marketplace add Neno73/thoughtful-dev
+/plugin marketplace add Neno73/solsdev
 ```
 
 #### Step 2: Verify Marketplace
 
 ```bash
-# List all marketplaces to confirm it was added
 /plugin marketplace list
 ```
 
-You should see `thoughtful-dev-marketplace` in the list.
+You should see `solsdev-marketplace` in the list.
 
-#### Step 3: Browse Available Plugins
-
-```bash
-# See what's available in the marketplace
-/plugin
-```
-
-You'll see the `thoughtful-dev` plugin with its description.
-
-#### Step 4: Install the Plugin
+#### Step 3: Install the Plugin
 
 ```bash
-# Install from the marketplace
-/plugin install thoughtful-dev@thoughtful-dev-marketplace
+/plugin install solsdev@solsdev-marketplace
 ```
 
 Or simply:
 
 ```bash
-/plugin install thoughtful-dev
+/plugin install solsdev
 ```
 
-#### Step 5: Verify Installation
+#### Step 4: Verify Installation
 
 ```bash
-# List installed plugins
 /plugin list
 ```
 
-You should see `thoughtful-dev` as active.
+You should see `solsdev` as active.
 
 ---
 
 ### Method 3: Team/Project Auto-Install
 
-For teams that want automatic plugin installation when cloning a project:
+For teams that want automatic plugin installation:
 
 #### Create Project Configuration
 
@@ -92,14 +75,14 @@ In your project root, create `.claude/settings.json`:
 ```json
 {
   "extraKnownMarketplaces": {
-    "thoughtful-dev-marketplace": {
+    "solsdev-marketplace": {
       "source": {
         "source": "github",
-        "repo": "Neno73/thoughtful-dev"
+        "repo": "Neno73/solsdev"
       }
     }
   },
-  "enabledPlugins": ["thoughtful-dev"]
+  "enabledPlugins": ["solsdev"]
 }
 ```
 
@@ -111,57 +94,40 @@ When a team member:
 3. Trusts the workspace
 
 Claude Code automatically:
-- Adds the `thoughtful-dev-marketplace`
-- Installs the `thoughtful-dev` plugin
-- Activates all three skills
-
-**Benefits:**
-- ✅ Consistent setup across the team
-- ✅ No manual installation steps
-- ✅ Version controlled with your project
-- ✅ New team members get it automatically
+- Adds the `solsdev-marketplace`
+- Installs the `solsdev` plugin
+- Activates all skills and rules
 
 ---
 
 ### Method 4: Local Development Install
 
-For testing or contributing to the plugin:
+For testing or contributing:
 
 #### Step 1: Clone the Repository
 
 ```bash
-# Clone to your local machine
-git clone https://github.com/Neno73/thoughtful-dev.git
-cd thoughtful-dev
+git clone https://github.com/Neno73/solsdev.git
+cd solsdev
 ```
 
 #### Step 2: Add Local Marketplace
 
 ```bash
-# Add the local directory as a marketplace
-/plugin marketplace add ./thoughtful-dev
+/plugin marketplace add ./solsdev
 ```
 
-Or specify the marketplace.json directly:
+#### Step 3: Install from Local
 
 ```bash
-# Point to the marketplace file
-/plugin marketplace add ./thoughtful-dev/.claude-plugin/marketplace.json
+/plugin install solsdev@solsdev
 ```
 
-#### Step 3: Install from Local Marketplace
+#### Step 4: Test Changes
 
 ```bash
-# Install the local version
-/plugin install thoughtful-dev@thoughtful-dev
-```
-
-#### Step 4: Make Changes and Test
-
-```bash
-# Edit skills in ./thoughtful-dev/skills/
-# Reload plugin to test changes
-/plugin reload thoughtful-dev
+# Edit files, then reload
+/plugin reload solsdev
 ```
 
 ---
@@ -170,44 +136,50 @@ Or specify the marketplace.json directly:
 
 ### 1. Set Up Personal Methodology File
 
-Copy the personal CLAUDE.md template to your home directory:
+Copy the personal CLAUDE.md template:
 
 ```bash
-# Create .claude directory if it doesn't exist
+# Create directory
 mkdir -p ~/.claude
 
-# Copy the personal template
+# Copy template
 cp templates/personal-CLAUDE.md ~/.claude/CLAUDE.md
 ```
 
 **Customize it:**
-- Edit git workflow preferences
-- Adjust autonomy levels
-- Add your preferred tech stack specifics
+- Git workflow preferences
+- Autonomy levels
+- Tech stack specifics
 
-### 2. Set Up Project Documentation (Optional)
+### 2. Initialize Project Documentation
 
-For each project, create a `.claude/` directory:
+For each project using the stack:
 
 ```bash
-# In your project root
-mkdir -p .claude
-
-# Copy project templates
-cp -r templates/project-claude/* ./.claude/
+# Run initialization command in Claude Code
+/solsdev:init-project my-project
 ```
 
-**Customize each file:**
-- `STACK.md` - Your actual tech stack
-- `ARCHITECTURE.md` - Your system design
-- `PATTERNS.md` - Your code conventions
-- `DECISIONS.md` - Your ADRs
-- `STARTUP.md` - Your commands
-- `GOTCHAS.md` - Your known issues
+This creates:
+- `.claude/` directory with documentation
+- Stack-aware templates
+- Decision log structure
 
 ---
 
 ## Verification & Testing
+
+### Test Rule Activation
+
+Edit a file matching rule paths and verify Claude loads the relevant rules:
+
+| Edit This | Expect These Rules |
+|-----------|--------------------|
+| `apps/web/app/page.tsx` | nextjs-15.md |
+| `packages/medusa/src/modules/cart.ts` | medusa-v2.md |
+| `apps/cms/src/api/articles.ts` | strapi-5.md |
+| `apps/web/components/ui/button.tsx` | shadcn-ui.md |
+| `docker-compose.yml` | coolify.md, docker.md |
 
 ### Test Skill Activation
 
@@ -216,24 +188,21 @@ cp -r templates/project-claude/* ./.claude/
 ```
 User: "Add authentication to the app"
 
-Expected: Claude should activate the requirements-clarifier skill
-and ask clarifying questions about:
-- Authentication method (OAuth, email/password, etc.)
+Expected: Claude asks clarifying questions about:
+- Authentication method
 - Backend integration
-- Scope (login/logout, password reset, etc.)
+- Scope
 ```
 
 #### Test Implementation Planner
 
 ```
-User: [After clarifying requirements] "Okay, build it"
+User: [After clarifying] "Okay, build it"
 
-Expected: Claude should activate the implementation-planner skill
-and provide:
+Expected: Claude provides:
 - Current state analysis
-- Multiple approach options with trade-offs
-- Risk assessment
-- Step-by-step implementation plan
+- Multiple approaches with trade-offs
+- Step-by-step plan
 ```
 
 #### Test Breakthrough Generator
@@ -241,31 +210,27 @@ and provide:
 ```
 User: "I've tried everything, the API keeps timing out"
 
-Expected: Claude should activate the breakthrough-generator skill
-and apply:
-- Assumption excavation techniques
-- Problem reframing
+Expected: Claude applies:
+- Assumption excavation
 - Systematic debugging approaches
 ```
 
 ### Test Safety Features
 
-#### Test Git Protection
+#### Git Protection
 
 ```
 User: "git push origin main"
 
-Expected: Claude should STOP and say:
-"⛔ NEVER push directly to main. Creating feature branch instead..."
+Expected: Claude STOPS and creates feature branch instead
 ```
 
-#### Test Database Safety
+#### Database Safety
 
 ```
 User: "Drop the users table"
 
-Expected: Claude should ASK for confirmation:
-"⚠️ DESTRUCTIVE OPERATION DETECTED... Are you sure?"
+Expected: Claude ASKS for confirmation
 ```
 
 ---
@@ -275,22 +240,19 @@ Expected: Claude should ASK for confirmation:
 ### Update from Marketplace
 
 ```bash
-# Refresh marketplace metadata
-/plugin marketplace update thoughtful-dev-marketplace
+# Refresh marketplace
+/plugin marketplace update solsdev-marketplace
 
-# Update the plugin
-/plugin update thoughtful-dev
+# Update plugin
+/plugin update solsdev
 ```
 
-### Update Local Development Version
+### Update Local Version
 
 ```bash
-# Pull latest changes
-cd thoughtful-dev
+cd solsdev
 git pull origin main
-
-# Reload the plugin
-/plugin reload thoughtful-dev
+/plugin reload solsdev
 ```
 
 ---
@@ -300,24 +262,22 @@ git pull origin main
 ### Remove Plugin Only
 
 ```bash
-# Uninstall the plugin (keeps marketplace)
-/plugin uninstall thoughtful-dev
+/plugin uninstall solsdev
 ```
 
 ### Remove Marketplace and Plugin
 
 ```bash
-# Remove the marketplace (also uninstalls plugins from it)
-/plugin marketplace remove thoughtful-dev-marketplace
+/plugin marketplace remove solsdev-marketplace
 ```
 
 ### Remove Personal Files
 
 ```bash
-# Remove personal methodology file
+# Remove personal methodology
 rm ~/.claude/CLAUDE.md
 
-# Remove project templates from a project
+# Remove project documentation
 rm -rf ./.claude/
 ```
 
@@ -328,13 +288,14 @@ rm -rf ./.claude/
 ### Plugin Not Loading
 
 **Symptoms:**
-- Plugin appears in list but skills don't activate
-- Commands not found
+- Plugin in list but skills don't activate
+- Rules not loading for matching files
 
 **Solutions:**
+
 1. Reload the plugin:
    ```bash
-   /plugin reload thoughtful-dev
+   /plugin reload solsdev
    ```
 
 2. Check plugin status:
@@ -346,8 +307,8 @@ rm -rf ./.claude/
 
 4. Reinstall:
    ```bash
-   /plugin uninstall thoughtful-dev
-   /plugin install thoughtful-dev
+   /plugin uninstall solsdev
+   /plugin install solsdev
    ```
 
 ---
@@ -359,23 +320,47 @@ rm -rf ./.claude/
 - "Marketplace not found" error
 
 **Solutions:**
+
 1. Verify GitHub repository is accessible:
-   ```bash
-   # Open in browser
-   https://github.com/Neno73/thoughtful-dev
+   ```
+   https://github.com/Neno73/solsdev
    ```
 
 2. Check internet connection
 
-3. Try full GitHub URL:
+3. Try full HTTPS URL:
    ```bash
-   /plugin marketplace add https://github.com/Neno73/thoughtful-dev.git
+   /plugin marketplace add https://github.com/Neno73/solsdev.git
    ```
 
 4. Use local clone:
    ```bash
-   git clone https://github.com/Neno73/thoughtful-dev.git
-   /plugin marketplace add ./thoughtful-dev
+   git clone https://github.com/Neno73/solsdev.git
+   /plugin marketplace add ./solsdev
+   ```
+
+---
+
+### Rules Not Activating
+
+**Symptoms:**
+- Edit file but rules don't load
+- No stack-specific guidance
+
+**Solutions:**
+
+1. Verify file matches rule paths:
+   - Check `paths:` frontmatter in rule files
+   - Use exact glob patterns
+
+2. Check rules directory exists:
+   ```bash
+   ls -la .claude/rules/stacks/
+   ```
+
+3. Reload plugin:
+   ```bash
+   /plugin reload solsdev
    ```
 
 ---
@@ -383,55 +368,21 @@ rm -rf ./.claude/
 ### Skills Not Activating
 
 **Symptoms:**
-- Plugin installed but skills don't trigger
-- No clarification questions or planning steps
+- No clarification questions
+- No planning steps
 
 **Solutions:**
+
 1. Check skill files exist:
    ```bash
-   # In plugin directory
    ls -la skills/
    ```
 
-2. Verify SKILL.md files are valid Markdown
+2. Verify plugin.json paths are correct
 
-3. Check marketplace.json has correct paths:
-   ```json
-   "commands": [
-     "./skills/requirements-clarifier/SKILL.md",
-     "./skills/implementation-planner/SKILL.md",
-     "./skills/breakthrough-generator/SKILL.md"
-   ]
-   ```
-
-4. Reload plugin:
+3. Reload plugin:
    ```bash
-   /plugin reload thoughtful-dev
-   ```
-
----
-
-### Template Files Missing
-
-**Symptoms:**
-- Can't find templates after installation
-- No personal-CLAUDE.md or project templates
-
-**Solutions:**
-1. Templates are in the repository, not auto-installed:
-   ```bash
-   # Clone the repo to access templates
-   git clone https://github.com/Neno73/thoughtful-dev.git
-   cd thoughtful-dev/templates
-   ```
-
-2. Manual copy:
-   ```bash
-   # Personal template
-   cp templates/personal-CLAUDE.md ~/.claude/CLAUDE.md
-   
-   # Project templates
-   cp -r templates/project-claude/* /your-project/.claude/
+   /plugin reload solsdev
    ```
 
 ---
@@ -439,22 +390,23 @@ rm -rf ./.claude/
 ### Version Conflicts
 
 **Symptoms:**
-- Plugin updated but still shows old version
+- Plugin updated but shows old version
 - Changes not reflected
 
 **Solutions:**
+
 1. Clear marketplace cache:
    ```bash
-   /plugin marketplace update thoughtful-dev-marketplace
+   /plugin marketplace update solsdev-marketplace
    ```
 
 2. Force reinstall:
    ```bash
-   /plugin uninstall thoughtful-dev
-   /plugin install thoughtful-dev
+   /plugin uninstall solsdev
+   /plugin install solsdev
    ```
 
-3. Check installed version:
+3. Check version:
    ```bash
    /plugin list
    ```
@@ -463,15 +415,17 @@ rm -rf ./.claude/
 
 ## Getting Help
 
-If you're still having issues:
+If still having issues:
 
-1. **Check existing issues:** [GitHub Issues](https://github.com/Neno73/thoughtful-dev/issues)
-2. **Create new issue:** Include:
+1. **Check existing issues:** [GitHub Issues](https://github.com/Neno73/solsdev/issues)
+
+2. **Create new issue** with:
    - Claude Code version
    - Error messages
    - Steps to reproduce
    - Plugin list output
-3. **Ask in discussions:** [GitHub Discussions](https://github.com/Neno73/thoughtful-dev/discussions)
+
+3. **Ask in discussions:** [GitHub Discussions](https://github.com/Neno73/solsdev/discussions)
 
 ---
 
@@ -479,10 +433,12 @@ If you're still having issues:
 
 After successful installation:
 
-1. ✅ Test all three skills with demo scenarios
-2. ✅ Customize personal CLAUDE.md for your workflow
-3. ✅ Set up project templates for your current project
-4. ✅ Read the [Best Practices Guide](./docs/best-practices.md)
-5. ✅ Join the [Discussions](https://github.com/Neno73/thoughtful-dev/discussions)
+1. Test rule activation with your project files
+2. Customize personal CLAUDE.md for your workflow
+3. Initialize project documentation with `/solsdev:init-project`
+4. Read [Rules Index](./.claude/rules/INDEX.md) for available rules
+5. Join [Discussions](https://github.com/Neno73/solsdev/discussions)
 
-**You're ready to transform Claude Code into your thoughtful development partner!** 🚀
+---
+
+**Ready to develop thoughtfully with path-scoped rules!**

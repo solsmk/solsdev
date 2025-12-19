@@ -1,428 +1,236 @@
-# Thoughtful Dev - Claude Code Marketplace
+# SolsDev - Claude Code Plugin
 
-Transform Claude Code from a fast coder into a **thoughtful development partner**.
+Opinionated development workflow for **Medusa v2 + Strapi 5 + Next.js 15/16** teams.
 
-![Version](https://img.shields.io/badge/version-1.1.1-blue)
+![Version](https://img.shields.io/badge/version-2.0.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-Plugin-purple)
 
 ---
 
-## 🎯 What This Does
+## What This Does
 
-Prevents **"code first, realize wrong later"** problems with three cognitive enhancement skills:
+**Path-scoped stack rules** + **cognitive enhancement skills** for modern commerce stacks.
+
+### Path-Scoped Rules (New in v2.0)
+
+Rules automatically activate when working with matching files:
+
+| Rule | Activates For | Key Topics |
+|------|---------------|------------|
+| `medusa-v2.md` | `**/medusa/**`, `**/workflows/**` | 18 commerce modules, workflow compensation, container DI |
+| `strapi-5.md` | `**/strapi/**`, `**/cms/**` | Document Service API, documentId, population syntax |
+| `nextjs-15.md` | `**/app/**`, `**/*.tsx` | Async APIs, caching OFF by default, Server Components |
+| `shadcn-ui.md` | `**/components/ui/**` | Copy-paste components, CLI, CSS variables theming |
+| `heroui.md` | `**/@heroui/**` | Compound components, React Aria, Framer animations |
+| `tailwind-v4.md` | `**/*.css` | CSS-first config, v4 breaking changes, container queries |
+| `meilisearch.md` | `**/search/**` | JS SDK, filter syntax, Medusa/Strapi integration |
+| `coolify.md` | `**/docker-compose*.yml` | Self-hosted PaaS, build packs, env vars |
+| `docker.md` | `**/Dockerfile*` | Multi-stage builds, npm ci, health checks |
+
+Plus cross-stack **patterns**: `cart-checkout.md`, `cms-integration.md`, `gotchas.md`
+
+### Cognitive Enhancement Skills
 
 1. **Requirements Clarifier** - Surfaces ambiguity before coding starts
-2. **Implementation Planner** - Analyzes approaches and risks before writing code  
+2. **Implementation Planner** - Analyzes approaches and risks before writing code
 3. **Breakthrough Generator** - Systematic problem-solving when stuck
-
-Plus **safety-first workflows** (git branches, database protection), **black-box architecture** principles, and **progressive documentation** templates.
-
----
-
-## 📦 Available Plugins
-
-This marketplace includes two complementary plugins:
-
-### 1. **thoughtful-dev** (Main Plugin)
-Transform Claude Code into a thoughtful development partner with requirements clarification, implementation planning, and breakthrough generation.
-
-**Install:**
-```bash
-/plugin install thoughtful-dev@thoughtful-dev-marketplace
-```
-
-### 2. **github-push-pr** (GitHub Automation)
-Complete GitHub workflow automation with security-first approach. Enforces feature branch workflow, runs security checks, creates PRs via GitHub CLI, and iterates on ClaudeBot feedback automatically.
-
-**Install:**
-```bash
-/plugin install github-push-pr@thoughtful-dev-marketplace
-```
-
-**Repository:** [Neno73/Github-pr-push](https://github.com/Neno73/Github-pr-push)
+4. **Documentation Maintenance** - Keeps docs synchronized with code
 
 ---
 
-## 🚀 Quick Install
-
-### Option 1: Direct Install (Recommended)
+## Quick Install
 
 ```bash
 # Add marketplace
-/plugin marketplace add Neno73/thoughtful-dev
+/plugin marketplace add Neno73/solsdev
 
-# Install thoughtful-dev (main plugin)
-/plugin install thoughtful-dev
-
-# Optionally install github-push-pr (GitHub automation)
-/plugin install github-push-pr
+# Install plugin
+/plugin install solsdev
 ```
 
-### Option 2: Step-by-Step
-
-```bash
-# Add the marketplace
-/plugin marketplace add Neno73/thoughtful-dev
-
-# Browse available plugins (shows both plugins)
-/plugin
-
-# Install one or both plugins
-/plugin install thoughtful-dev@thoughtful-dev-marketplace
-/plugin install github-push-pr@thoughtful-dev-marketplace
-```
-
-### Option 3: Auto-Install for Teams
+### Team Auto-Install
 
 Add to your project's `.claude/settings.json`:
 
 ```json
 {
   "extraKnownMarketplaces": {
-    "thoughtful-dev-marketplace": {
+    "solsdev-marketplace": {
       "source": {
         "source": "github",
-        "repo": "Neno73/thoughtful-dev"
+        "repo": "Neno73/solsdev"
       }
     }
   },
-  "enabledPlugins": [
-    "thoughtful-dev",
-    "github-push-pr"
-  ]
+  "enabledPlugins": ["solsdev"]
 }
 ```
 
-When team members trust the repository, Claude Code automatically installs the marketplace and both plugins (or choose just one).
+---
+
+## What's Included
+
+### Stack Rules (`.claude/rules/stacks/`)
+
+| Category | Rules |
+|----------|-------|
+| **Core Stack** | Medusa v2, Strapi 5, Next.js 15 |
+| **UI & Styling** | shadcn/ui, HeroUI, Tailwind CSS v4 |
+| **Infrastructure** | Meilisearch, Coolify, Docker |
+
+### Pattern Rules (`.claude/rules/patterns/`)
+
+- `cart-checkout.md` - Cart state, payment sessions, order completion
+- `cms-integration.md` - Strapi client, media URLs, caching
+- `gotchas.md` - Cross-stack integration issues
+
+### Skills
+
+| Skill | Size | Purpose |
+|-------|------|---------|
+| Requirements Clarifier | 18KB | Prevents coding before understanding |
+| Implementation Planner | 23KB | Analyzes trade-offs before implementation |
+| Breakthrough Generator | 68KB | Systematic problem-solving |
+| Doc Maintenance | 8KB | Keeps documentation current |
+
+### Commands
+
+| Command | Purpose |
+|---------|---------|
+| `/solsdev:init-project` | Analyze codebase, create documentation |
+| `/solsdev:init-personal` | Setup personal CLAUDE.md |
+| `/solsdev:audit-docs` | Check documentation drift |
 
 ---
 
-## 📦 What's Included
+## Decision Trees
 
-### Core Skills (109KB total)
+### Which Stack Owns What?
 
-#### 1. Requirements Clarifier (18KB)
-**Prevents:** Coding before understanding the full scope
-
-**Activates when:** User gives ambiguous requirements like "add authentication"
-
-**Does:**
-- Asks stack-specific clarifying questions
-- Surfaces hidden assumptions
-- Gets explicit agreement before coding
-
-**Example:**
 ```
-User: "Add authentication"
-
-Claude: [Activates skill]
-"Let me clarify before I start:
-
-1. Authentication method?
-   - Email/password
-   - OAuth (Google, GitHub, etc.)
-   - Magic link
-
-2. Integration with Strapi backend?
-   - Yes, use Strapi's auth
-   - No, separate auth service
-
-3. Scope?
-   - Just login/logout
-   - Also password reset, email verification
-
-4. Session management?
-   - JWT tokens
-   - Server-side sessions
-
-Which direction should I take?"
+Product/pricing/inventory? → Medusa
+Marketing content/blog/SEO? → Strapi
+Rendering/routing/caching?  → Next.js
+Search indexing?            → Meilisearch
+Deployments?                → Coolify + Docker
 ```
 
-#### 2. Implementation Planner (23KB)
-**Prevents:** Rushing into code without considering trade-offs
+### Which UI Library?
 
-**Activates when:** Requirements are clear and user is ready to build
-
-**Does:**
-- Analyzes current state
-- Proposes multiple approaches with honest trade-offs
-- Identifies risks and mitigation strategies
-- Creates step-by-step implementation plan
-
-**Example:**
 ```
-Claude: [Activates skill]
-"## Implementation Analysis
-
-### Current State
-- Next.js 14 with App Router
-- Strapi backend at /api
-- No auth currently
-
-### Proposed Approaches
-
-**Option A: NextAuth.js**
-- ✅ Pros: Battle-tested, built-in session management
-- ❌ Cons: Custom adapter needed for Strapi
-- 🎯 Risk: Low | Effort: Medium (2-3 hours)
-
-**Option B: Manual OAuth**
-- ✅ Pros: Full control, perfect Strapi integration
-- ❌ Cons: Security complexity, more maintenance
-- ⚠️ Risk: High | Effort: Large (6-8 hours)
-
-### Recommendation: Option A
-Lower risk, faster delivery, proven pattern.
-
-### Implementation Steps:
-1. Install NextAuth.js and dependencies
-2. Create Strapi adapter
-3. Configure auth API routes
-4. Add session provider to layout
-5. Create login/logout components
-6. Test auth flow
-
-Ready to proceed with Option A?"
-```
-
-#### 3. Breakthrough Generator (68KB total)
-**Prevents:** Getting stuck without systematic problem-solving techniques
-
-**Activates when:** User says "tried everything" or similar frustration
-
-**Does:**
-- Applies 9 lateral thinking techniques
-- Uses 8 assumption excavation methods
-- Employs 5 problem reframing patterns
-- Draws from 7 cross-domain inspiration libraries
-- Progressive disclosure (loads only needed sections)
-
-**Example:**
-```
-User: "API keeps timing out, I've tried everything"
-
-Claude: [Activates skill]
-[Applies Assumption Excavation → Exhaustion Forcing]
-
-"Let me verify you've actually tried EVERYTHING:
-
-❓ What you measured:
-- Query execution time: 50ms
-- Did you profile FULL request time? (Not just query)
-
-❓ What you didn't check:
-- Connection pool exhaustion?
-- GC pauses during response serialization?
-- Network latency between services?
-- JSON serialization of large payloads?
-
-🔍 Let's check JSON serialization:
-How large is the response payload? (MB?)
-
-[After user responds with "2.5MB"]
-
-💡 BREAKTHROUGH HYPOTHESIS:
-The API isn't timing out - it's taking 30+ seconds
-to serialize 2.5MB of JSON in memory.
-
-🎯 Solutions:
-1. Paginate the response (100 items per page)
-2. Stream the response instead of buffering
-3. Use a CDN for static data
-
-Which approach fits your use case?"
+Need full code ownership?    → shadcn/ui (copy-paste)
+Need batteries-included?     → HeroUI (package)
+Custom design system?        → Tailwind CSS directly
 ```
 
 ---
 
-### Templates & Documentation
+## Example: Rules in Action
 
-#### Personal CLAUDE.md (7KB)
-User-level methodology file for `~/.claude/CLAUDE.md`
+When you edit `apps/web/app/cart/page.tsx`:
 
-**Includes:**
-- Critical safety rules (git workflow, database operations)
-- Autonomy & judgment guidelines
-- Before-coding protocols (invoke skills)
-- Black-box architecture principles
-- Documentation protocol
-- Session hygiene best practices
+```
+Claude automatically loads:
+  → nextjs-15.md (matches **/app/**)
+  → cart-checkout.md (matches **/cart/**)
+  → gotchas.md (always available)
 
-#### Project Templates (7 files)
-Project-level `.claude/` directory structure
-
-**Files:**
-- `INDEX.md` - Table of contents for progressive discovery
-- `STACK.md` - Tech stack with versions and rationale
-- `ARCHITECTURE.md` - System design and data flow
-- `PATTERNS.md` - Code conventions with examples
-- `DECISIONS.md` - Architectural Decision Records (append-only)
-- `STARTUP.md` - Build/run/test commands, troubleshooting
-- `GOTCHAS.md` - Known issues and workarounds
+Now Claude knows:
+  - await params/cookies (Next.js 15 async APIs)
+  - Cart hydration SSR issues
+  - Medusa cart completion flow
+```
 
 ---
 
-## 🛡️ Safety Features
+## Safety Features
 
 ### Git Workflow Protection
+
 ```
 User: "git push origin main"
 
-Claude: [STOPS immediately]
-"⛔ NEVER push directly to main.
-
-Creating feature branch instead:
+Claude: [STOPS]
+"Creating feature branch instead:
 $ git checkout -b feature/your-feature
-$ git push origin feature/your-feature
-
-Would you like me to create a pull request?"
+$ git push origin feature/your-feature"
 ```
 
 ### Database Safety
+
 ```
 User: "Drop the users table"
 
-Claude: [STOPS and asks]
-"⚠️ DESTRUCTIVE OPERATION DETECTED
-
-You're asking me to:
-- DROP TABLE users
-
+Claude: [ASKS]
+"DESTRUCTIVE OPERATION DETECTED
 This will permanently delete all user data.
-
 Are you absolutely sure? (yes/no)"
-```
-
-### Secrets Protection
-```
-Claude: [Before any commit]
-"🔍 Checking for secrets...
-❌ Found hardcoded API key in config.js:12
-✅ Added .env to .gitignore
-✅ Created .env.example template
-
-Secrets protected. Safe to commit."
 ```
 
 ---
 
-## 🏗️ Architecture Philosophy
+## Architecture Philosophy
 
 Based on **Eskil Steenberg's Black-Box Architecture**:
 
-1. **Constant Velocity** - Write 5 new lines today vs. edit 1 line later
-2. **Complete Ownership** - One module, one person, full responsibility
+1. **Constant Velocity** - Write 5 new lines vs. edit 1 line later
+2. **Complete Ownership** - One module, one person
 3. **Everything Replaceable** - Can't understand it? Rewrite it.
 4. **Clean Interfaces** - Hide implementation details
 5. **Single Responsibility** - One module, one purpose
 
 ---
 
-## 📊 Built-in Tech Stack Support
+## Documentation
 
-**Optimized for:**
-- Next.js 14+ (App Router, Server/Client Components, Server Actions)
-- Strapi (API patterns, population, authentication)
-- Medusa (Store/Admin APIs, cart handling)
-- Tailwind CSS (utility-first styling)
-- shadcn/ui (component library conventions)
-- TypeScript (strict mode, type safety)
+- [Installation Guide](./INSTALL.md)
+- [Contributing Guidelines](./CONTRIBUTING.md)
+- [Changelog](./CHANGELOG.md)
+- [Roadmap](./ROADMAP.md)
+- [License](./LICENSE)
 
-**Easily adaptable** for other stacks by customizing templates.
+### Rules Documentation
 
----
-
-## 🎬 Demo Scenarios
-
-### Scenario 1: Building Authentication
-```
-User: "Add authentication"
-→ requirements-clarifier: Asks OAuth vs email/password, Strapi integration
-→ Gets explicit agreement on scope
-→ implementation-planner: Proposes NextAuth.js vs manual, analyzes trade-offs
-→ Creates step-by-step plan
-→ Gets approval
-→ Implements on feature branch with safety checks
-→ Updates documentation
-```
-
-### Scenario 2: Debugging Stuck Problem
-```
-User: "API timing out, tried everything"
-→ breakthrough-generator: Applies Assumption Excavation
-→ Discovers only query was profiled, not full request
-→ Reveals GC pause during JSON serialization
-→ Breakthrough: Paginate or stream the response
-```
-
-### Scenario 3: Safety Protection
-```
-User: "git push origin main"
-→ Safety rules: STOPS immediately
-→ Creates feature/your-feature branch instead
-→ Pushes to feature branch
-→ Creates pull request
-```
+- [Rules Index](./.claude/rules/INDEX.md) - Quick reference for all rules
+- [Contributing to Rules](./.claude/rules/CONTRIBUTING.md) - How to add/update rules
 
 ---
 
-## 🎯 Perfect For
+## Contributing
 
-✅ Developers who want thoughtful collaboration, not just speed  
-✅ Teams needing consistent code quality and documentation  
-✅ Projects using Next.js + Strapi + Medusa (or similar stacks)  
-✅ Anyone who's experienced "code first, fix later" pain  
-✅ Developers who value safety guardrails  
-
-❌ Quick prototyping where speed > thoughtfulness  
-❌ Solo hobby projects with no documentation requirements  
-
----
-
-## 📚 Documentation
-
-- [Installation Guide](./INSTALL.md) - Detailed setup instructions
-- [Contributing Guidelines](./CONTRIBUTING.md) - How to improve the plugin
-- [Changelog](./CHANGELOG.md) - Version history and updates
-- [License](./LICENSE) - MIT License
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+Contributions welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 **Ways to contribute:**
-- Report bugs and suggest features via [Issues](https://github.com/Neno73/thoughtful-dev/issues)
-- Submit pull requests for improvements
-- Share your experience using the plugin
-- Suggest new skills or templates
+- Report bugs via [Issues](https://github.com/Neno73/solsdev/issues)
+- Submit pull requests
+- Add stack rules for new technologies
+- Improve pattern documentation
 
 ---
 
-## 📄 License
+## License
 
-MIT License - see [LICENSE](./LICENSE) file for details.
+MIT License - see [LICENSE](./LICENSE) file.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Built on Claude Code plugin system by Anthropic.
 
 Inspired by:
 - Eskil Steenberg's Black-Box Architecture
-- Test-Driven Development (TDD) methodology
 - Community best practices from Claude Code users
+- Real-world Medusa + Strapi + Next.js projects
 
 ---
 
-## 📞 Support
+## Support
 
-- **Issues:** [GitHub Issues](https://github.com/Neno73/thoughtful-dev/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/Neno73/thoughtful-dev/discussions)
+- **Issues:** [GitHub Issues](https://github.com/Neno73/solsdev/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/Neno73/solsdev/discussions)
 
 ---
 
-**Transform Claude Code from fast coder to thoughtful partner!** 🚀
+**Path-scoped rules for thoughtful development!**

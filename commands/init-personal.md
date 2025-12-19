@@ -1,14 +1,14 @@
 ---
-description: Setup personal thoughtful development methodology in ~/.claude/CLAUDE.md
+description: Setup personal SolsDev methodology in ~/.claude/CLAUDE.md
 ---
 
-# Thoughtful Dev - Initialize Personal Configuration
+# SolsDev - Initialize Personal Configuration
 
 You are setting up the user's personal development methodology file at `~/.claude/CLAUDE.md`.
 
 ## What This Does
 
-This command copies the Thoughtful Dev personal methodology template to `~/.claude/CLAUDE.md`, which Claude reads automatically at the start of every session across all projects.
+This command copies the SolsDev personal methodology template to `~/.claude/CLAUDE.md`, which Claude reads automatically at the start of every session across all projects.
 
 ## Your Task
 
@@ -23,8 +23,8 @@ ls -la ~/.claude/CLAUDE.md
 **If it exists:**
 - Show the user the first 20 lines of their current CLAUDE.md
 - **ASK** if they want to:
-  - Replace it with the Thoughtful Dev template
-  - Append the Thoughtful Dev sections to their existing file
+  - Replace it with the SolsDev template
+  - Append the SolsDev sections to their existing file
   - Cancel and keep their current version
 
 **DO NOT overwrite without explicit permission!**
@@ -83,7 +83,7 @@ Tell the user:
 1. Customize the TECH STACK section for your stack
 2. Review the CORE PRINCIPLES and adjust if needed
 3. Start a new Claude session to activate it
-4. Use `/thoughtful-dev:init-project` in your projects to add project-specific docs
+4. Use `/solsdev:init-project` in your projects to add project-specific docs
 
 ## Important Notes
 

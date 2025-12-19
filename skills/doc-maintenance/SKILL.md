@@ -114,14 +114,14 @@ Documentation is now up to date!
 Okay! I'll remind you at the end of this session.
 
 You can also run:
-/thoughtful-dev:audit-docs - For comprehensive drift check
+/solsdev:audit-docs - For comprehensive drift check
 ```
 
 **Option 3: Skip**
 ```
 Got it - you'll update manually.
 
-Reminder: Run /thoughtful-dev:audit-docs before your next release
+Reminder: Run /solsdev:audit-docs before your next release
 to catch any accumulated drift.
 ```
 
@@ -351,7 +351,7 @@ After making updates, remind user:
 ```
 Documentation updated!
 
-💡 Tip: Run /thoughtful-dev:audit-docs periodically to catch
+💡 Tip: Run /solsdev:audit-docs periodically to catch
 any drift I might have missed.
 
 Recommended:
@@ -367,7 +367,7 @@ Recommended:
 ⚠ This project doesn't have .claude/ documentation yet.
 
 Would you like me to:
-1. Run /thoughtful-dev:init-project to set it up
+1. Run /solsdev:init-project to set it up
 2. Continue without documentation tracking
 ```
 
@@ -448,9 +448,11 @@ If you detect multiple outdated files or significant drift:
 I found several documentation updates needed (5+ files).
 
 This might indicate accumulated drift. Consider running:
-/thoughtful-dev:audit-docs
+/solsdev:audit-docs
 
 For a comprehensive check of all documentation.
+
+**Note:** The `doc-watcher` background agent handles automatic incremental updates after file changes.
 ```
 
 Remember: Your job is to **keep documentation alive**, not to burden the user with busywork. Make it easy, automatic when possible, and always helpful.

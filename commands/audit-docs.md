@@ -22,9 +22,9 @@ ls CLAUDE.md .claude/
 ```
 ⚠️ No documentation found
 
-This project doesn't have thoughtful-dev documentation structure.
+This project doesn't have solsdev documentation structure.
 
-Run: /thoughtful-dev:init-project to set it up.
+Run: /solsdev:init-project to set it up.
 ```
 
 **If found, proceed to Step 2.**
@@ -225,7 +225,7 @@ Would you like me to:
 3. Update all drift automatically
 4. Just note the issues (you'll fix manually)
 
-Or run: /thoughtful-dev:update-docs to update manually
+Or run: /solsdev:update-docs to update manually
 ```
 
 ## Important Principles
@@ -400,7 +400,7 @@ This suggests documentation hasn't been updated in a while.
 **CRITICAL:** Documentation is significantly out of sync.
 
 Recommend:
-1. Run /thoughtful-dev:init-project to regenerate docs
+1. Run /solsdev:init-project to regenerate docs
 2. Or allow me to do comprehensive updates now
 
 This level of drift suggests starting fresh might be faster.
@@ -417,7 +417,7 @@ I can help fix these issues. Would you like me to update the docs now?
 Or you can:
 - Edit files manually
 - Enable auto-updates (add "Mode: auto" to CLAUDE.md)
-- Run /thoughtful-dev:update-docs for guided updates
+- Run /solsdev:update-docs for guided updates
 ```
 
 **If no drift:**
@@ -436,7 +436,7 @@ Keep it that way by:
 ```
 This project has no documentation structure.
 
-Run: /thoughtful-dev:init-project [project-name]
+Run: /solsdev:init-project [project-name]
 
 To create CLAUDE.md and .claude/ documentation.
 ```

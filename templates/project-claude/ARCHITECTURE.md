@@ -1,148 +1,67 @@
-# System Architecture
+# Architecture
 
-*Last updated: YYYY-MM-DD HH:MM*
+> Directory structure, data flow, module boundaries
 
-## High-Level Overview
-
-[Brief 2-3 sentence description of the system]
+## Directory Map
 
 ```
-┌─────────────┐
-│   Next.js   │  Frontend (App Router)
-│   Frontend  │
-└──────┬──────┘
-       │
-       ├─────────► Strapi (Content/CMS)
-       │
-       └─────────► Medusa (E-commerce)
+app/                      # Next.js App Router
+├── (marketing)/          # Public pages (home, about, blog)
+├── (shop)/               # E-commerce (products, cart, checkout)
+├── api/                  # API routes (webhooks, auth callbacks)
+└── layout.tsx            # Root layout
+
+components/
+├── ui/                   # shadcn components (don't modify directly)
+├── forms/                # Form components
+└── [feature]/            # Feature-specific components
+
+lib/
+├── clients/
+│   ├── strapi.ts         # Strapi client
+│   └── medusa.ts         # Medusa client
+├── utils.ts              # Shared utilities
+└── constants.ts          # App constants
+
+hooks/                    # Custom React hooks
+types/                    # TypeScript types
 ```
 
----
+## Data Ownership
+
+| Data Type | Owner | Source of Truth |
+|-----------|-------|-----------------|
+| Products, pricing, inventory | Medusa | Medusa DB |
+| Orders, carts, customers | Medusa | Medusa DB |
+| Blog, pages, SEO content | Strapi | Strapi DB |
+| Marketing content, media | Strapi | Strapi DB |
+| User sessions | Next.js | Cookies |
 
 ## Data Flow
 
-### Content Flow (Strapi)
-1. Content editors create/update content in Strapi admin
-2. Next.js fetches via Strapi REST API
-3. Server Components render content (ISR/SSR/SSG)
+| Flow | Path |
+|------|------|
+| Content → UI | Strapi API → Server Component → render |
+| Products → UI | Medusa Store API → Server Component → render |
+| Cart actions | Client → Server Action → Medusa API |
+| Forms | Client Component → Server Action → Strapi/Medusa |
 
-### E-commerce Flow (Medusa)
-1. Customer browses products (SSG pages)
-2. Add to cart → Medusa Store API
-3. Checkout → Medusa payment integration
-4. Order → Medusa admin API
+## Module Boundaries
 
----
+| Module | Responsibility | Depends On |
+|--------|---------------|------------|
+| `app/` | Routing, layouts | components, lib |
+| `components/` | UI rendering | lib/utils, hooks |
+| `lib/clients/` | API communication | types |
+| `hooks/` | Shared logic | lib/clients |
 
-## Directory Structure
+## Key Files
 
-```
-project/
-├── app/                    # Next.js App Router
-│   ├── (marketing)/       # Marketing pages
-│   ├── (shop)/            # E-commerce pages
-│   ├── api/               # API routes
-│   └── layout.tsx         # Root layout
-│
-├── components/
-│   ├── ui/                # shadcn components
-│   └── [feature]/         # Feature-specific components
-│
-├── lib/
-│   ├── strapi.ts          # Strapi client
-│   ├── medusa.ts          # Medusa client
-│   └── utils.ts           # Shared utilities
-│
-└── types/                 # TypeScript types
-```
+| File | Purpose |
+|------|---------|
+| `lib/clients/strapi.ts` | All Strapi API calls |
+| `lib/clients/medusa.ts` | All Medusa API calls |
+| `app/api/webhooks/route.ts` | Webhook handlers |
+| `middleware.ts` | Auth, redirects |
 
----
-
-## Key Design Decisions
-
-### Server vs. Client Components
-
-**Server Components (default):**
-- Data fetching from Strapi/Medusa
-- Static content rendering
-- No interactivity needed
-
-**Client Components ('use client'):**
-- Forms and user input
-- Interactive UI (modals, dropdowns)
-- State management
-
-### Data Fetching Strategy
-
-**Static Generation (SSG):**
-- Product listings
-- Content pages (blog, about, etc.)
-
-**Incremental Static Regeneration (ISR):**
-- Product details (revalidate every 60s)
-- Content with occasional updates
-
-**Server-Side Rendering (SSR):**
-- User-specific pages
-- Real-time data requirements
-
----
-
-## Integration Points
-
-### Strapi Integration
-- **Endpoint:** `process.env.STRAPI_URL`
-- **Auth:** Bearer token for preview/draft content
-- **Caching:** ISR with 60s revalidation
-
-### Medusa Integration
-- **Store API:** Customer-facing operations
-- **Admin API:** Order management, inventory
-- **Cart:** Stored in Medusa, cart ID in cookies
-
----
-
-## Component Architecture
-
-### Composition Pattern
-
-```tsx
-// Container components (Server)
-async function ProductList() {
-  const products = await getProducts()
-  return <ProductGrid products={products} />
-}
-
-// Presentational components (can be Server or Client)
-function ProductGrid({ products }) {
-  return (
-    <div className="grid grid-cols-3 gap-4">
-      {products.map(p => <ProductCard key={p.id} product={p} />)}
-    </div>
-  )
-}
-
-// Interactive components (Client)
-'use client'
-function AddToCartButton({ productId }) {
-  // Handles interactivity
-}
-```
-
----
-
-## Performance Considerations
-
-- Images: Use Next.js `<Image>` component
-- Fonts: Next.js font optimization
-- Bundle size: Monitor with `@next/bundle-analyzer`
-- API calls: Minimize waterfalls, fetch in parallel
-
----
-
-## Security
-
-- Environment variables for sensitive config
-- CSRF protection via Server Actions
-- Input validation with Zod
-- SQL injection protection (ORMs handle this)
+*Updated: YYYY-MM-DD*
