@@ -4,6 +4,14 @@
 
 ---
 
+## 📚 Documentation
+
+- **[MANAGING-SERVERS.md](MANAGING-SERVERS.md)** - Add/remove MCP servers, create profiles
+- **[DOCKER-DESKTOP-INTEGRATION.md](DOCKER-DESKTOP-INTEGRATION.md)** - Manage via Docker Desktop GUI
+- **[MCP-TOOLKIT-INTEGRATION.md](MCP-TOOLKIT-INTEGRATION.md)** - Use Docker's MCP Toolkit CLI
+
+---
+
 ## What This Provides
 
 The SolsDev MCP Gateway gives Claude Code access to:

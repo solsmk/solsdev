@@ -30,6 +30,7 @@
 
 | Rule | When to Read | Key Topics |
 |------|--------------|------------|
+| [patterns/architecture.md](patterns/architecture.md) | Building cross-stack services, adapters, middleware | Interface-driven dev, abstract classes, DI patterns, Adapter pattern, testing with mocks |
 | [patterns/cart-checkout.md](patterns/cart-checkout.md) | Implementing cart, checkout, or payment flows | Cart state management, SSR hydration, payment sessions, order completion |
 | [patterns/cms-integration.md](patterns/cms-integration.md) | Fetching content from Strapi for Next.js | Strapi client setup, media URL handling, caching strategies, revalidation |
 | [patterns/gotchas.md](patterns/gotchas.md) | Debugging cross-stack issues, integration problems | Data ownership, cart hydration, CORS, caching conflicts, auth flow, webhooks |
