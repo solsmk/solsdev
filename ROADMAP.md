@@ -35,6 +35,11 @@
 - Documentation templates
 - Background doc-watcher agent
 - Auto-triggered hooks
+- **Docker MCP Gateway** - Unified MCP server management
+  - 15+ MCP servers (Medusa, Strapi, GitHub, PostgreSQL, etc.)
+  - 6 workflow profiles (fullstack, frontend, backend, debugging, research, minimal)
+  - Security features (rate limiting, secret blocking, signature verification)
+  - One-command setup and Claude Code integration
 
 ---
 
@@ -56,10 +61,11 @@ v2.0.0 (Current)    v2.1.0           v2.2.0           v3.0.0 (Future)
     │                  │                │                    │
 Foundation       Polish & Test    Community Growth    Advanced AI
     │                  │                │                    │
-    ├─ 9 Stack Rules   ├─ llms.txt      ├─ Docker MCP       ├─ Critique Agent
-    ├─ 3 Patterns      ├─ Full Hooks    ├─ Example Repos    ├─ GitHub Integration
-    ├─ 4 Skills        ├─ Validation    ├─ Tutorials        ├─ Sentry Monitoring
-    └─ Doc-watcher     └─ Fixes         └─ Feedback Loop    └─ Browser Testing
+    ├─ 9 Stack Rules   ├─ llms.txt ✅    ├─ Example Repos    ├─ Critique Agent
+    ├─ 3 Patterns      ├─ Full Hooks    ├─ Tutorials        ├─ GitHub Integration
+    ├─ 4 Skills        ├─ Validation    ├─ Plugin Growth    ├─ Sentry Monitoring
+    ├─ Doc-watcher     └─ Fixes         └─ Feedback Loop    └─ Browser Testing
+    └─ MCP Gateway ✅
 ```
 
 ---
@@ -70,9 +76,9 @@ Foundation       Polish & Test    Community Growth    Advanced AI
 
 ### High Priority
 
-- [ ] **Generate llms.txt** - AI-optimized documentation index
-  - Script: `scripts/generate-llms-txt.sh`
-  - Auto-regenerate on doc changes
+- [x] **Generate llms.txt** - AI-optimized documentation index ✅ **DONE in v2.0.0**
+  - ~~Script: `scripts/generate-llms-txt.sh`~~ (manual for now)
+  - Auto-regenerate on doc changes (future)
   - Include all rules, patterns, templates
 
 - [ ] **Complete Hooks Suite**
@@ -137,6 +143,12 @@ Foundation       Polish & Test    Community Growth    Advanced AI
   - Usage analytics (if opt-in)
 
 ### Medium Priority
+
+- [x] **Docker MCP Gateway** ✅ **DONE in v2.0.0**
+  - 15+ MCP servers integrated
+  - 6 workflow profiles
+  - Security and rate limiting
+  - One-command setup scripts
 
 - [ ] **Expand Stack Coverage**
   - PostgreSQL patterns (database migrations, queries)

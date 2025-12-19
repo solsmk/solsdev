@@ -1,0 +1,62 @@
+version: '3.8'
+
+# SolsDev MCP Gateway
+# Unified Model Context Protocol server management for Medusa + Strapi + Next.js development
+
+services:
+  mcp-gateway:
+    image: docker/mcp-gateway:latest
+    container_name: solsdev-mcp-gateway
+    ports:
+      - "8811:8811"  # SSE transport
+    volumes:
+      # Docker socket for container management
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      # MCP configuration
+      - ./mcp:/mcp:ro
+
+      # User's home directory for credentials (read-only)
+      - ${HOME}/.docker/mcp:/home/mcp/.docker/mcp:ro
+
+    command:
+      - --catalog=/mcp/catalogs/solsdev.yaml
+      - --config=/mcp/config.yaml
+      - --transport=sse
+      - --port=8811
+      - --watch=true
+      - --verify-signatures
+      - --log-calls
+      - --block-secrets
+
+    environment:
+      # MCP Gateway settings
+      - MCP_LOG_LEVEL=info
+      - MCP_WORKSPACE=${PWD}
+
+      # Stack URLs (customize per environment)
+      - MEDUSA_BACKEND_URL=${MEDUSA_BACKEND_URL:-http://localhost:9000}
+      - STRAPI_URL=${STRAPI_URL:-http://localhost:1337}
+      - NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL:-http://localhost:3000}
+
+    restart: unless-stopped
+
+    networks:
+      - mcp-network
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8811/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  mcp-network:
+    driver: bridge
+    name: solsdev-mcp-network
+
+# Volume for persistent MCP data
+volumes:
+  mcp-data:
+    name: solsdev-mcp-data

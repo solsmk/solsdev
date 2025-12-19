@@ -1,0 +1,196 @@
+# SolsDev MCP Gateway Configuration
+# Security, performance, and operational settings
+
+gateway:
+  # Transport configuration
+  transport: sse  # Server-Sent Events for real-time updates
+  port: 8811
+  host: "0.0.0.0"
+
+  # Catalog configuration
+  catalog: /mcp/catalogs/solsdev.yaml
+  default_profile: fullstack
+
+  # Workspace configuration
+  workspace: ${MCP_WORKSPACE}
+  allowed_paths:
+    - "${MCP_WORKSPACE}"
+    - "/tmp"
+
+# ==========================================
+# SECURITY SETTINGS
+# ==========================================
+
+security:
+  # Signature verification
+  verify_signatures: true
+
+  # Secret protection
+  block_secrets: true
+  secret_patterns:
+    - "sk-[a-zA-Z0-9]{32,}"  # API keys
+    - "ghp_[a-zA-Z0-9]{36}"  # GitHub tokens
+    - "xoxb-[0-9]{10,13}-[0-9]{10,13}-[a-zA-Z0-9]{24}"  # Slack tokens
+    - "[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}"  # Credit cards
+    - "-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----"  # Private keys
+
+  # Logging
+  log_calls: true
+  log_payloads: false  # Don't log request/response bodies
+
+  # CORS
+  cors_enabled: true
+  cors_origins:
+    - "http://localhost:*"
+    - "http://127.0.0.1:*"
+
+  # Rate limiting
+  rate_limit:
+    enabled: true
+    requests_per_minute: 60
+    burst: 10
+
+# ==========================================
+# RESOURCE LIMITS
+# ==========================================
+
+resources:
+  # Default limits for all servers
+  default_memory: 512Mb
+  default_cpus: 1.0
+
+  # Maximum limits
+  max_memory: 2Gb
+  max_cpus: 2.0
+
+  # Timeouts
+  startup_timeout: 30s
+  request_timeout: 60s
+  idle_timeout: 300s
+
+  # Per-server overrides
+  overrides:
+    medusa:
+      memory: 1Gb
+      cpus: 1.5
+
+    strapi:
+      memory: 1Gb
+      cpus: 1.5
+
+    postgres:
+      memory: 768Mb
+      cpus: 1.0
+
+    sequentialthinking:
+      memory: 256Mb
+      cpus: 0.5
+
+# ==========================================
+# LIFECYCLE MANAGEMENT
+# ==========================================
+
+lifecycle:
+  # Auto-start servers on demand
+  lazy_start: true
+
+  # Stop idle servers after timeout
+  auto_stop: true
+  idle_timeout: 600s  # 10 minutes
+
+  # Restart policy
+  restart_policy: on-failure
+  max_restarts: 3
+  restart_delay: 5s
+
+  # Health checks
+  health_check:
+    enabled: true
+    interval: 30s
+    timeout: 5s
+    retries: 3
+
+# ==========================================
+# LOGGING & MONITORING
+# ==========================================
+
+logging:
+  level: info  # debug, info, warn, error
+  format: json
+
+  outputs:
+    - type: console
+      level: info
+
+    - type: file
+      level: debug
+      path: /var/log/mcp/gateway.log
+      max_size: 100Mb
+      max_backups: 3
+      compress: true
+
+  # Structured logging fields
+  fields:
+    service: solsdev-mcp-gateway
+    environment: ${ENVIRONMENT:-development}
+
+monitoring:
+  # Metrics export
+  metrics_enabled: true
+  metrics_port: 9090
+
+  # Tracing
+  tracing_enabled: false
+
+  # Profiling
+  pprof_enabled: false
+
+# ==========================================
+# NETWORKING
+# ==========================================
+
+network:
+  # DNS resolution
+  dns_servers:
+    - 8.8.8.8
+    - 1.1.1.1
+
+  # Network isolation
+  isolation: true
+
+  # Proxy configuration
+  http_proxy: ${HTTP_PROXY}
+  https_proxy: ${HTTPS_PROXY}
+  no_proxy: ${NO_PROXY}
+
+# ==========================================
+# CACHE CONFIGURATION
+# ==========================================
+
+cache:
+  enabled: true
+
+  # Response caching
+  response_cache:
+    enabled: true
+    ttl: 300s  # 5 minutes
+    max_size: 100Mb
+
+  # Schema caching
+  schema_cache:
+    enabled: true
+    ttl: 3600s  # 1 hour
+
+# ==========================================
+# EXPERIMENTAL FEATURES
+# ==========================================
+
+experimental:
+  # Enable experimental MCP features
+  enabled: false
+
+  # Feature flags
+  features:
+    - streaming_responses
+    - parallel_tool_calls
+    - session_persistence

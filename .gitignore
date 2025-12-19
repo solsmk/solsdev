@@ -50,6 +50,7 @@ pnpm-lock.yaml
 .env.development
 .env.production
 .env.test
+.env.mcp
 
 # Testing
 coverage/

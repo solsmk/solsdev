@@ -1,0 +1,305 @@
+# SolsDev MCP Server Catalog
+# MCP servers for Medusa v2 + Strapi 5 + Next.js 15/16 development
+
+name: solsdev-catalog
+version: "2.0.0"
+description: "MCP servers for modern commerce stack development"
+
+servers:
+  # ==========================================
+  # CORE STACK - E-commerce & CMS
+  # ==========================================
+
+  medusa:
+    description: "Medusa v2 commerce engine - documentation and API access"
+    command: npx
+    args:
+      - "-y"
+      - "@medusajs/mcp-server"
+    transport: stdio
+    capabilities: [tools, resources, prompts]
+    env:
+      MEDUSA_BACKEND_URL: "${MEDUSA_BACKEND_URL}"
+      MEDUSA_PUBLISHABLE_KEY: "${MEDUSA_PUBLISHABLE_KEY}"
+    documentation: "https://docs.medusajs.com/mcp"
+    tags: [commerce, medusa, e-commerce]
+
+  strapi:
+    description: "Strapi 5 headless CMS - content management and queries"
+    command: npx
+    args:
+      - "-y"
+      - "@strapi/mcp-server"
+    transport: stdio
+    capabilities: [tools, resources]
+    env:
+      STRAPI_URL: "${STRAPI_URL}"
+      STRAPI_API_TOKEN: "${STRAPI_API_TOKEN}"
+    secrets:
+      - strapi.api_token
+    documentation: "https://docs.strapi.io/dev-docs/integrations/mcp"
+    tags: [cms, strapi, content]
+
+  # ==========================================
+  # UI COMPONENTS
+  # ==========================================
+
+  shadcn:
+    description: "shadcn/ui component registry - search and install components"
+    command: npx
+    args:
+      - "-y"
+      - "shadcn-mcp"
+    transport: stdio
+    capabilities: [tools, resources]
+    documentation: "https://ui.shadcn.com/docs/mcp"
+    tags: [ui, components, shadcn]
+
+  # ==========================================
+  # SEARCH & DATA
+  # ==========================================
+
+  meilisearch:
+    description: "Meilisearch server - index management and search"
+    command: npx
+    args:
+      - "-y"
+      - "meilisearch-mcp"
+    transport: stdio
+    capabilities: [tools, resources]
+    env:
+      MEILISEARCH_HOST: "${MEILISEARCH_HOST:-http://localhost:7700}"
+      MEILISEARCH_API_KEY: "${MEILISEARCH_API_KEY}"
+    secrets:
+      - meilisearch.api_key
+    documentation: "https://www.meilisearch.com/docs/learn/mcp"
+    tags: [search, meilisearch]
+
+  # ==========================================
+  # DEVELOPMENT TOOLS
+  # ==========================================
+
+  github:
+    description: "GitHub - repository management, issues, PRs"
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-github"
+    transport: stdio
+    capabilities: [tools, prompts, resources]
+    secrets:
+      - github.personal_access_token
+    env:
+      GITHUB_TOKEN: "${GITHUB_TOKEN}"
+    documentation: "https://github.com/modelcontextprotocol/servers/tree/main/src/github"
+    tags: [git, github, version-control]
+
+  gitlab:
+    description: "GitLab - repository management and CI/CD"
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-gitlab"
+    transport: stdio
+    capabilities: [tools, resources]
+    secrets:
+      - gitlab.personal_access_token
+    env:
+      GITLAB_PERSONAL_ACCESS_TOKEN: "${GITLAB_PERSONAL_ACCESS_TOKEN}"
+      GITLAB_API_URL: "${GITLAB_API_URL:-https://gitlab.com/api/v4}"
+    documentation: "https://github.com/modelcontextprotocol/servers/tree/main/src/gitlab"
+    tags: [git, gitlab, ci-cd]
+
+  # ==========================================
+  # FILE SYSTEM & WEB ACCESS
+  # ==========================================
+
+  filesystem:
+    description: "Safe filesystem access - read/write files in workspace"
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-filesystem"
+      - "${MCP_WORKSPACE}"
+    transport: stdio
+    capabilities: [tools, resources]
+    documentation: "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem"
+    tags: [filesystem, files]
+
+  fetch:
+    description: "HTTP fetch - retrieve external documentation and APIs"
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-fetch"
+    transport: stdio
+    capabilities: [tools]
+    documentation: "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch"
+    tags: [http, fetch, web]
+
+  # ==========================================
+  # SEARCH & RESEARCH
+  # ==========================================
+
+  brave-search:
+    description: "Brave Search - web search for documentation and research"
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-brave-search"
+    transport: stdio
+    capabilities: [tools]
+    secrets:
+      - brave.api_key
+    env:
+      BRAVE_API_KEY: "${BRAVE_API_KEY}"
+    documentation: "https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search"
+    tags: [search, web, brave]
+
+  # ==========================================
+  # DATABASE & STORAGE
+  # ==========================================
+
+  postgres:
+    description: "PostgreSQL - database queries and schema inspection"
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-postgres"
+    transport: stdio
+    capabilities: [tools, resources]
+    env:
+      POSTGRES_CONNECTION_STRING: "${POSTGRES_CONNECTION_STRING}"
+    secrets:
+      - postgres.connection_string
+    documentation: "https://github.com/modelcontextprotocol/servers/tree/main/src/postgres"
+    tags: [database, postgresql, sql]
+
+  # ==========================================
+  # AI & REASONING
+  # ==========================================
+
+  sequentialthinking:
+    description: "Sequential thinking - step-by-step reasoning for complex problems"
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-sequential-thinking"
+    transport: stdio
+    capabilities: [tools]
+    documentation: "https://github.com/modelcontextprotocol/servers/tree/main/src/sequential-thinking"
+    tags: [reasoning, thinking, problem-solving]
+
+  # ==========================================
+  # MONITORING & OBSERVABILITY
+  # ==========================================
+
+  sentry:
+    description: "Sentry error tracking - query issues and analyze errors"
+    type: remote
+    url: "https://mcp.sentry.dev/mcp"
+    transport: http
+    capabilities: [tools, resources]
+    auth:
+      type: oauth
+    documentation: "https://docs.sentry.io/product/sentry-mcp/"
+    tags: [monitoring, errors, sentry]
+
+  # ==========================================
+  # PROJECT MANAGEMENT
+  # ==========================================
+
+  linear:
+    description: "Linear - issue tracking and project management"
+    command: npx
+    args:
+      - "-y"
+      - "linear-mcp"
+    transport: stdio
+    capabilities: [tools, resources]
+    secrets:
+      - linear.api_key
+    env:
+      LINEAR_API_KEY: "${LINEAR_API_KEY}"
+    documentation: "https://linear.app/docs/integrations/mcp"
+    tags: [project-management, linear, issues]
+
+# ==========================================
+# SERVER PROFILES
+# ==========================================
+
+profiles:
+  # Minimal profile - core development only
+  minimal:
+    description: "Bare minimum for development"
+    servers:
+      - filesystem
+      - fetch
+      - github
+
+  # Full-stack development
+  fullstack:
+    description: "Complete Medusa + Strapi + Next.js development"
+    servers:
+      - medusa
+      - strapi
+      - shadcn
+      - meilisearch
+      - github
+      - filesystem
+      - fetch
+      - postgres
+      - sequentialthinking
+
+  # Frontend-only development
+  frontend:
+    description: "Next.js and UI development"
+    servers:
+      - strapi
+      - shadcn
+      - github
+      - filesystem
+      - fetch
+      - sequentialthinking
+
+  # Backend-only development
+  backend:
+    description: "Medusa backend development"
+    servers:
+      - medusa
+      - postgres
+      - meilisearch
+      - github
+      - filesystem
+      - fetch
+      - sequentialthinking
+
+  # Production debugging
+  debugging:
+    description: "Production issue investigation"
+    servers:
+      - medusa
+      - strapi
+      - postgres
+      - sentry
+      - github
+      - fetch
+      - sequentialthinking
+
+  # Research & documentation
+  research:
+    description: "Documentation research and learning"
+    servers:
+      - brave-search
+      - fetch
+      - filesystem
+      - sequentialthinking
+
+# ==========================================
+# DEFAULT CONFIGURATION
+# ==========================================
+
+defaults:
+  profile: fullstack
+  auto_start: true
+  restart_policy: unless-stopped
