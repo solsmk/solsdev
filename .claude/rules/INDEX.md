@@ -72,6 +72,9 @@ Custom design system?           → Tailwind CSS directly
 | Search filter returns empty | meilisearch.md (filter type syntax) |
 | Docker build fails | docker.md (multi-stage, cache order) |
 | Deploy fails on Coolify | coolify.md (build packs, env vars) |
+| Service not injectable | architecture.md (abstract class vs interface) |
+| Circular dependency | architecture.md (DI lifetime) or medusa-v2.md (Awilix PROXY) |
+| Interface not found at runtime | architecture.md (TypeScript type erasure) |
 
 ## Documentation Links (When Rules Are Outdated)
 
@@ -98,6 +101,16 @@ Custom design system?           → Tailwind CSS directly
 | **Next.js** | Built-in DevTools MCP (v16) | Bundled with Next.js 16 |
 | **shadcn** | Built-in MCP server | Component registry search |
 
+### Architecture Patterns
+
+| Resource | URL |
+|----------|-----|
+| **Black Box Architecture** | [GitHub - ai-architecture-prompts](https://github.com/Alexanderdunlop/ai-architecture-prompts) |
+| **Awilix DI Container** | [GitHub - jeffijoe/awilix](https://github.com/jeffijoe/awilix) |
+| **Medusa Container Docs** | [Medusa Container Reference](https://docs.medusajs.com/v2/resources/references/architectural-modules/container) |
+| **Strapi Services** | [Strapi Services Documentation](https://docs.strapi.io/dev-docs/backend-customization/services) |
+| **Next.js DI Pattern** | [Dependency Injection with Next.js](https://himynameistim.com/blog/dependency-injection-with-nextjs-and-typescript) |
+
 ## Reading Strategy
 
 1. **Start here** - Scan this INDEX for relevant rules
@@ -123,6 +136,7 @@ Custom design system?           → Tailwind CSS directly
 │   ├── coolify.md        # Self-hosted PaaS
 │   └── docker.md         # Containerization
 └── patterns/
+    ├── architecture.md    # Interface-driven development
     ├── cart-checkout.md  # Commerce flows
     ├── cms-integration.md # Content patterns
     └── gotchas.md        # Integration issues
@@ -139,4 +153,4 @@ Key principles:
 - **Link to docs** - Rules get outdated, official docs don't
 - **Update INDEX.md** - Every new rule gets indexed
 
-*Last updated: 2025-12-14*
+*Last updated: 2025-12-19*

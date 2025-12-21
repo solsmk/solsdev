@@ -6,6 +6,7 @@
 
 ## 📚 Documentation
 
+- **[DYNAMIC-MCP-GUIDE.md](DYNAMIC-MCP-GUIDE.md)** - ⭐ **NEW!** Dynamic server discovery during conversations
 - **[MANAGING-SERVERS.md](MANAGING-SERVERS.md)** - Add/remove MCP servers, create profiles
 - **[DOCKER-DESKTOP-INTEGRATION.md](DOCKER-DESKTOP-INTEGRATION.md)** - Manage via Docker Desktop GUI
 - **[MCP-TOOLKIT-INTEGRATION.md](MCP-TOOLKIT-INTEGRATION.md)** - Use Docker's MCP Toolkit CLI
@@ -14,39 +15,79 @@
 
 ## What This Provides
 
-The SolsDev MCP Gateway gives Claude Code access to:
+### 🚀 Dynamic MCP (NEW!)
 
+**Discover and add MCP servers during conversations** - no config files, no restarts!
+
+```
+"Find me the Slack MCP server"
+→ Searches 270+ servers from Docker's catalog
+
+"Add Slack to this session"
+→ Installs instantly, tools available immediately
+
+"Send message to #general"
+→ Uses newly added Slack tools
+```
+
+**Two catalogs available:**
+- **Docker Official** - 270+ servers (Slack, GitHub, AWS, PostgreSQL, Redis, and more)
+- **SolsDev Custom** - 9 curated servers for this project
+
+See **[DYNAMIC-MCP-GUIDE.md](DYNAMIC-MCP-GUIDE.md)** for full details.
+
+---
+
+### Static Servers (Traditional Approach)
+
+Pre-configured servers always available:
 - **Medusa v2** - Commerce API and documentation
 - **Strapi 5** - CMS content management
 - **Database Access** - PostgreSQL queries and schema
 - **Search** - Meilisearch indexing and search
 - **GitHub/GitLab** - Repository management
 - **Monitoring** - Sentry error tracking
-- **And more...** - 15+ MCP servers ready to use
-
-All through a **single secure gateway** with authentication, rate limiting, and secret protection.
 
 ---
 
 ## Quick Start
 
-### 1. Start the Gateway
+### Option 1: Dynamic MCP (Recommended)
+
+**One-time setup:**
 
 ```bash
-# From project root
+# 1. Enable dynamic tools
+docker mcp feature enable dynamic-tools
+
+# 2. Connect Claude Code
+docker mcp client connect claude-code --global
+
+# 3. Restart Claude Code
+```
+
+**That's it!** Now you can discover and add servers during conversations:
+- `"Find PostgreSQL servers"` → Search catalog
+- `"Add postgres server"` → Install on-demand
+- `"Show database schema"` → Use immediately
+
+See **[DYNAMIC-MCP-GUIDE.md](DYNAMIC-MCP-GUIDE.md)** for workflows and examples.
+
+---
+
+### Option 2: Static Gateway (Traditional)
+
+**For pre-configured server setups:**
+
+```bash
+# 1. Start the gateway
 ./mcp/scripts/start-gateway.sh
 
 # Or with specific profile
 ./mcp/scripts/start-gateway.sh backend
-```
 
-### 2. Configure Environment
-
-```bash
-# Copy example config
+# 2. Configure environment
 cp .env.mcp.example .env.mcp
-
-# Edit with your credentials
 nano .env.mcp
 ```
 
